@@ -2,7 +2,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
-            {box-sizing: border-box}
+            * {box-sizing: border-box}
             body, html {
                 height: 100%;
                 margin: 0;
@@ -20,7 +20,7 @@
                 width: 25%;
             }
             .tablink:hover {
-                background-color: black;
+                background-color: #777;
             }
             .tabcontent {
                 color: white;
@@ -35,10 +35,10 @@
         </style>
     </head>
     <body>
-        <button class="tablink" onclick="openpage ('Home', this, 'red')">Home</button>
-        <button class="tablink" onclick="openpage ('Biography', this, 'green')">Home</button>
-        <button class="tablink" onclick="openpage ('Discography', this, 'yellow')">Home</button>
-        <button class="tablink" onclick="openpage ('Pages', this, 'blue')">Home</button>
+        <button class="tablink" onclick="openPage ('Home', this, 'red')">Home</button>
+        <button class="tablink" onclick="openPage ('Biography', this, 'green')" id="defaultOpen">Biography</button>
+        <button class="tablink" onclick="openPage ('Discography', this, 'yellow')">Discography</button>
+        <button class="tablink" onclick="openPage ('Pages', this, 'blue')">Pages</button>
         <div id="Home" class="tabcontent">
             <h2>Home</h2>
             <p>Home page</p>
@@ -58,11 +58,12 @@
         <script>
             function openPage(pageName,elmnt,color) {
                 var i, tabcontent, tablinks;
-                tabcontent=document.getElementsByClassName("tabcontent");
+                tabcontent = 
+                document.getElementsByClassName("tabcontent");
                 for (i=0; i < tabcontent.lenth; i++) {
                     tabcontent[i].style.display="none";
                 }
-                tablinks=document.getElementByClassName("tablink");
+                tablinks=document.getElementsByClassName("tablink");
                 for (i=0; i < tablinks.length; i++) {
                     tablinks[i].style.backgroundColor="";
                 }

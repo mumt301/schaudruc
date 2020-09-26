@@ -1,15 +1,16 @@
 h1 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: blueviolet;
 }
 body {
     background-color: lightyellow;
     color: darkblue;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 24px;
-    line-height: 55px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    line-height: 45px;
 }
 h2 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: lightseagreen
+    color: lightseagreen;
+    font-size: 25px
 }

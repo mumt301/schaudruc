@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {box-sizing: border-box}
+            body, html {
+                height: 100%;
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .tablink {
+                background-color: #555;
+                color: white;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                font-size: 17px;
+                width: 25%;
+            }
+            .tablink: hover {
+                background-color: #777;
+            }
+            .tabcontent {
+                color: white;
+                display: none;
+                padding: 100px 20px;
+                height: 100%;
+            }
+            #Home {background-color: red;}
+            #Biography {background-color: green;}
+            #Discography {background-color: yellow;}
+            #Pages {background-color: blue;}
+        </style>
+    </head>
+    <body>
+        <button class="tablink" onclick="openpage ('Home', this, 'red')">Home</button>
+        <button class="tablink" onclick="openpage ('Biography', this, 'green')">Home</button>
+        <button class="tablink" onclick="openpage ('Discography', this, 'yellow')">Home</button>
+        <button class="tablink" onclick="openpage ('Pages', this, 'blue')">Home</button>
+        <div id="Home" class="tabcontent">
+            <h2>Home</h2>
+            <p>Home page</p>
+        </div>
+        <div id="Biography" class="tabcontent">
+            <h2>Biography</h2>
+            <p>Biography page</p>
+        </div>
+        <div id="Discography" class="tabcontent">
+            <h2>Discography</h2>
+            <p>Discography page</p>
+        </div>
+        <div id="Pages" class="tabcontent">
+            <h2>Pages</h2>
+            <p>Links to Pages</p>
+        </div>
+        <script>
+            function openPage(pageName,elmnt,color) {
+                var i, tabcontent, tablinks;
+                tabcontent=document.getElementsByClassName("tabcontent");
+                for (i=0; i < tabcontent.lenth; i++) {
+                    tabcontent[i].style.display="none";
+                }
+                tablinks=document.getElementByClassName("tablink");
+                for (i=0; i < tablinks.length; i++) {
+                    tablinks[i].style.backgroundColor="";
+                }
+                document.getElementById(pageName).style.display="block";
+                elmnt.style.backgroundColor=color;
+            }
+            document.getElementById("defaultOpen").click();
+        </script>
+    </body>
+</html>

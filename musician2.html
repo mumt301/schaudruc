@@ -49,9 +49,41 @@
         <div id="BIOGRAPHY" class="tabcontent">
             <h2>About Tyler, The Creator</h2>
             <p>Biography page</p>
-            <p>
-                <img src="image/tyler2.png" width="300" alt="Photo of Tyler, The Creaator">
-            </p>
+            
+            <head>
+                <style>
+                    {
+                    box-sizing: border-box;
+                }
+                .column {
+                    float: left;
+                    width: 50%;
+                    padding: 10px;
+                    height: 300px;
+                }
+                .row:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+                </style>
+            </head>
+                <h2>Two equal columns</h2>
+                <div class="row">
+                    <div class="column"
+                    style="background-color:#aaa;">
+                <h2>Column 1</h2>
+                <p>
+                    <img src="image/tyler2.png" width="300" alt="Photo of Tyler, The Creaator">
+                </p>
+                </div>
+                <div class="column"
+                style="background-color:#bbb;">
+                <h2>Column 2</h2>
+                <p>Some text...</p>
+                </div>
+                </div>
+
         </div>
         <div id="DISCOGRAPHY" class="tabcontent">
             <h2>Tyler, The Creator's Discography</h2>

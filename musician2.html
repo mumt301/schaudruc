@@ -9,7 +9,7 @@
                 font-family: Arial, Helvetica, sans-serif;
             }
             .tablink {
-                background-color: #555;
+                background-color: pink;
                 color: white;
                 float: left;
                 border: none;
@@ -20,7 +20,7 @@
                 width: 25%;
             }
             .tablink:hover {
-                background-color: #777;
+                background-color: darkmagenta;
             }
             .tabcontent {
                 color: white;
@@ -28,31 +28,31 @@
                 padding: 100px 20px;
                 height: 100%;
             }
-            #Home {background-color: red;}
-            #Biography {background-color: green;}
-            #Discography {background-color: yellow;}
-            #Pages {background-color: blue;}
+            #Home {background-color: lightcoral;}
+            #Biography {background-color: lightgreen;}
+            #Discography {background-color: rgb(243, 243, 149);}
+            #Pages {background-color: lightskyblue;}
         </style>
     </head>
     <body>
-        <button class="tablink" onclick="openPage ('Home', this, 'red')" id="defaultOpen">Home</button>
-        <button class="tablink" onclick="openPage ('Biography', this, 'green')">Biography</button>
-        <button class="tablink" onclick="openPage ('Discography', this, 'yellow')">Discography</button>
-        <button class="tablink" onclick="openPage ('Pages', this, 'blue')">Pages</button>
-        <div id="Home" class="tabcontent">
-            <h2>Home</h2>
+        <button class="tablink" onclick="openPage ('HOME', this, 'red')" id="defaultOpen">HOME</button>
+        <button class="tablink" onclick="openPage ('BIOGRAPHY', this, 'green')">BIOGRAPHY</button>
+        <button class="tablink" onclick="openPage ('DISCOGRAPHY', this, 'yellow')">DISCOGRAPHY</button>
+        <button class="tablink" onclick="openPage ('MUSIC', this, 'blue')">MUSIC</button>
+        <div id="HOME" class="tabcontent">
+            <h2>HOME</h2>
             <p>Home page</p>
         </div>
-        <div id="Biography" class="tabcontent">
-            <h2>Biography</h2>
+        <div id="BIOGRAPHY" class="tabcontent">
+            <h2>BIOGRAPHY</h2>
             <p>Biography page</p>
         </div>
-        <div id="Discography" class="tabcontent">
-            <h2>Discography</h2>
+        <div id="DISCOGRAPHY" class="tabcontent">
+            <h2>DISCOGRAPHY</h2>
             <p>Discography page</p>
         </div>
-        <div id="Pages" class="tabcontent">
-            <h2>Pages</h2>
+        <div id="MUSIC" class="tabcontent">
+            <h2>MUSIC</h2>
             <p>Links to Pages</p>
         </div>
         <script>

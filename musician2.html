@@ -42,9 +42,35 @@
         <div id="HOME" class="tabcontent">
             <h2>Tyler, The Creator</h2>
             <p>Welcome to the "all things" Tyler, The Creator website!</p>
-            <p>
-                <img src="image/TylerTheCreator_SamRock.jpg" width="700" alt="Photo of Tyler, The Creaator">
-            </p>
+            
+            <head>
+                <style>
+                    * { box-sizing: border-box; }
+                    .column {
+                        float: left;
+                        width: 33.33%;
+                        padding: 5px;
+                    }
+                    .row::after {
+                        content: "";
+                        clear: both;
+                        display: table;
+                    }
+                </style>
+            </head>
+            <body>
+                <h2>Tyler, The Creator</h2>
+                <p>Welcome!</p>
+                <div class="row">
+                    <div class="column">
+                        <img src="image/TylerTheCreator_SamRock.jpg" alt="Tyler, The Creator" style="width:100%">
+                    </div>
+                    <div class="column">
+                        <img src="image/tyler_jacket" alt="Tyler, The Creator" style="width:100%">
+                    </div>
+                </div>
+            </body>
+
         </div>
         <div id="BIOGRAPHY" class="tabcontent">
             <h2>About Tyler, The Creator</h2>
@@ -52,7 +78,6 @@
             <p>
                 <img src="image/tyler2.png" width="300" alt="Photo of Tyler, The Creaator">
             </p>
-
         </div>
         <div id="DISCOGRAPHY" class="tabcontent">
             <h2>Tyler, The Creator's Discography</h2>

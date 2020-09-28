@@ -6,11 +6,7 @@
     max-width: 60%;
     height: auto;
 }
-#container {
-    background: #7968ae;
-    width: 900px;
-    margin-left: auto;
-    margin-right: auto;   
-    font: 20px verdana, "sans serif", tahoma;
-    overflow: hidden;
-    }
+.responsive3 {
+    width: 30%;
+    height: auto;
+}

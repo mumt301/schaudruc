@@ -10,3 +10,8 @@
     width: 60%;
     height: auto;
 }
+<style media="screen">
+.sqs-audio-embed {
+ visibility: hidden;
+}
+</style>

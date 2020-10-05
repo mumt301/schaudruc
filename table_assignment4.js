@@ -1,5 +1,5 @@
 let assignment4_table = [{
-    'filename': '',
+    'filename': 'row 1',
     'compression algorithm': '',
     'compression bit-rate': '',
     'original file size': '',
@@ -9,15 +9,15 @@ let assignment4_table = [{
     'compressed version': '',
     'residual noice': ''
 }, {
-    'filename': '',
-    'compression algorithm': '',
-    'compression bit-rate': '',
-    'original file size': '',
-    'compressed file size': '',
-    'compression ratio': '',
-    'original version': '',
-    'compressed version': '',
-    'residual noice': ''
+    'filename': 'row 2',
+    'compression algorithm': 'row 2',
+    'compression bit-rate': 'row 2',
+    'original file size': 'row 2',
+    'compressed file size': 'row 2',
+    'compression ratio': 'row 2',
+    'original version': 'row 2',
+    'compressed version': 'row 2',
+    'residual noice': 'row 2'
 }, {
     'filename': '',
     'compression algorithm': '',

@@ -1,3 +1,45 @@
+let assignment4_table = [{
+    'filename': '',
+    'compression algorithm': '',
+    'compression bit-rate': '',
+    'original file size': '',
+    'compressed file size': '',
+    'compression ratio': '',
+    'original version': '',
+    'compressed version': '',
+    'residual noice': ''
+}, {
+    'filename': '',
+    'compression algorithm': '',
+    'compression bit-rate': '',
+    'original file size': '',
+    'compressed file size': '',
+    'compression ratio': '',
+    'original version': '',
+    'compressed version': '',
+    'residual noice': ''
+}, {
+    'filename': '',
+    'compression algorithm': '',
+    'compression bit-rate': '',
+    'original file size': '',
+    'compressed file size': '',
+    'compression ratio': '',
+    'original version': '',
+    'compressed version': '',
+    'residual noice': ''
+}, {
+    'filename': '',
+    'compression algorithm': '',
+    'compression bit-rate': '',
+    'original file size': '',
+    'compressed file size': '',
+    'compression ratio': '',
+    'original version': '',
+    'compressed version': '',
+    'residual noice': ''
+}]
+
 function assignment_table() {
     let table = document.createElement('table');
     table.id = "residual_table"

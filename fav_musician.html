@@ -66,17 +66,36 @@
         <button class="tablink" onclick="openPage ('MUSIC', this, 'rgb(103, 197, 255)')">MUSIC</button>
 
         <div id="HOME" class="tabcontent">
-            <h1>Tyler, The Creator</h1>
+            <head>
+                <style>
+                    {
+                    box-sizing: border-box;
+                }
+                .column {
+                    float: left;
+                    width: 50%;
+                    padding: 10px;
+                }
+                .row:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+                </style>
+            </head>
+            <div class="row">
+                <div class="column">
+            <p>
+                <h1>Tyler, The Creator</h1>
+            </p>
             <p>Welcome to the "all things" Tyler, The Creator website!</p>
             <p>
-                <img src="image/TylerTheCreator_SamRock.jpg" alt="Tyler, The Creator" class="responsive2">
+                <img src="image/TylerTheCreator_SamRock.jpg" alt="Photo of Tyler, The Creator" class="responsive2">
             </p>
-            <p>
-                <a href="index.html" style="color:white">Home Page</a>
-            </p>
-            <p>
-                <a href="assignments.html" style="color:white">Assignments Page</a>
-            </p>
+            </div>
+            <div class="column">
+                <img src="image/tylergif2.gif" alt="Gif of Tyler" class="responsive2">
+            </div>
             <header>
                 <iframe width="0%" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/621622326&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
             </header>

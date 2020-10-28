@@ -10,3 +10,7 @@
     width: 60%;
     height: auto;
 }
+.responsive4 {
+    max-width: 100%;
+    height: "400";
+}

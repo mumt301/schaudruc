@@ -30,7 +30,7 @@
                     let queryURL = mBaseURL + mbResource + artistName;
                     console.log(queryURL);
 
-                    httpGet(queryURL, getMBID)
+                    httpGet(queryURL, getMBID);
                 }
             }
 
@@ -56,6 +56,22 @@
 
                 let placeholder = document.getElementById('placeholder');
                 placeholder.innerHTML = `For ${artistName} the MusicBrainz ID is ${artistMBID}`;
+            }
+
+            function getAlbums(xhttp) {
+                 let retrievedData = xhttp.responseXML;
+                 console.log(retrievedData);
+                 let artistAlbum = retrievedData.getElementsByTagName('title');
+                 console.log(artistAlbum);
+                 let albumDate = retrievedData.getElementsByTagName('first-release-date');
+                 console.log(albumDate);
+
+                 let mBaseURL = "https://musicbrainz.org/ws/2/";
+                let mbResource = "release-group?artist=&type=album&limit=1000";
+                let queryURL2 = mBaseURL + mbResource + artistMBID;
+                console.log(queryURL);
+
+                httpGet(queryURL2, getAlbums)
             }
 
             window.onload = queryArtist;

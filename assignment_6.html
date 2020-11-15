@@ -14,5 +14,16 @@
                 <input type="submit" value="Get MBID">
             </form>
         </div>
+
+        <script type="text/JavaScript">
+            function queryArtist() {
+                let params = (new URL(document.location)).searchParams;
+                if (params.has('artist')) {
+                    let artistName = params.get('artist');
+                    console.log(artistName);
+                }
+            }
+            window.onload = queryArtist;
+        </script>
     </body>
 </html>

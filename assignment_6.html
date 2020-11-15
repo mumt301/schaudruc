@@ -64,7 +64,7 @@
                 let params = (new URL(document.location)).searchParams;
                 if (params.has('release-group')) {
                     let artistAlbums = params.get('release-group');
-                    console.log(artistAlbums);
+                    console.log(artistMBID);
 
                     let mBaseURL = "https://musicbrainz.org/ws/2/";
                     let mbResource = "release-group?artist=";
@@ -78,10 +78,11 @@
             function getAlbums(xhttp) {
                  let retrievedData = xhttp.responseXML;
                  console.log(retrievedData);
-                 let albumData = retrievedData.getElementsByTagName('release-group');
-                 let albumTitle = albumData.getElementsByTagName('title').innerHTML;
+                 let albumData = retrievedData.getElementsByTagName('release-group')[0];
+                 
+                 let albumTitle = albumData.getElementsByTagName('title')[0].innerHTML;
                  console.log(albumTitle)
-                 let albumDate = albumData.getElementsByTagName('first-release-date').innerHTML;
+                 let albumDate = albumData.getElementsByTagName('first-release-date')[0].innerHTML;
                  console.log(albumDate);
 
                  let placeholder = document.getElementById('placeholder');
@@ -89,6 +90,7 @@
             }
 
             window.onload = queryArtist;
+            window.onload = queryAlbums;
         </script>
     </body>
 </html>

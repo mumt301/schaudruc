@@ -26,7 +26,25 @@
                     let mbResource = "artist?query=";
                     let queryURL = mBaseURL + mbResource + artistName;
                     console.log(queryURL);
+
+                    httpGet(queryURL, ________)
                 }
+            }
+
+            function.httpGet(theURL, cbFunction) {
+                let xmlHttp = new XMLHttpRequst();
+                xmlHttp.open("GET", theURL);
+                xmlHttp.send();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cbFunction(this);
+                    }
+                };
+            }
+
+            function getMBID() {
+                let retrievedData = this.responseXML;
+                console.log(retrievedData);
             }
             window.onload = queryArtist;
         </script>

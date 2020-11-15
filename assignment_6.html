@@ -76,7 +76,7 @@
 
             function httpGet(theURL2, getAlbums) {
                 let xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", theURL);
+                xmlHttp.open("GET", theURL2);
                 xmlHttp.send();
                 xmlHttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {

@@ -21,6 +21,11 @@
                 if (params.has('artist')) {
                     let artistName = params.get('artist');
                     console.log(artistName);
+
+                    let mBaseURL = "https://musicbrainz.org/ws/2/";
+                    let mbResource = "artist?query=";
+                    let queryURL = mBaseURL + mbResource + artistName;
+                    console.log(queryURL);
                 }
             }
             window.onload = queryArtist;

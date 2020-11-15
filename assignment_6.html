@@ -68,7 +68,7 @@
 
                     let mBaseURL = "https://musicbrainz.org/ws/2/";
                     let mbResource = "release-group?artist=";
-                    let queryURL2 = mBaseURL + mbResource + artistMBID;
+                    let queryURL2 = mBaseURL + mbResource + artistAlbums;
                     console.log(queryURL2);
 
                     httpGet(queryURL2, getAlbums);

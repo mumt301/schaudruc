@@ -27,7 +27,7 @@
                     let queryURL = mBaseURL + mbResource + artistName;
                     console.log(queryURL);
 
-                    httpGet(queryURL, ________)
+                    httpGet(queryURL, getMBID)
                 }
             }
 
@@ -42,8 +42,8 @@
                 };
             }
 
-            function getMBID() {
-                let retrievedData = this.responseXML;
+            function getMBID(xhttp) {
+                let retrievedData = xhttp.responseXML;
                 console.log(retrievedData);
             }
             window.onload = queryArtist;

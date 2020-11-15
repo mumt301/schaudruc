@@ -13,6 +13,9 @@
                 <input type="text" name="artist" id="name">
                 <input type="submit" value="Get MBID">
             </form>
+
+            <p id="placeholder"></p>
+
         </div>
 
         <script type="text/JavaScript">
@@ -50,8 +53,11 @@
                 console.log(artistMBID);
                 let artistName = artistData.getElementByTagName('name')[0].innerHTML;
                 console.log(artistName);
+
+                let placeholder = document.getElementById('placeholder');
+                placeholder.innerHTML = `For ${artistName} the MusicBrainz ID is ${artistMBID}`;
             }
-            
+
             window.onload = queryArtist;
         </script>
     </body>

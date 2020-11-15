@@ -32,10 +32,10 @@
             }
 
             function httpGet(theURL, cbFunction) {
-                let xmlHttp = new XMLHttpRequst();
+                let xmlHttp = new XMLHttpRequest();
                 xmlHttp.open("GET", theURL);
                 xmlHttp.send();
-                xmlHttp.onreadystatechange = function() {
+                xmlHttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         cbFunction(this);
                     }

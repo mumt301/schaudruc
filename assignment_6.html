@@ -85,19 +85,6 @@
                 };
             }
 
-            function getMBID(xhttp) {
-                let retrievedData = xhttp.responseXML;
-                console.log(retrievedData);
-                let artistData = retrievedData.getElementsByTagName('artist')[0];
-                let artistMBID = artistData.id;
-                console.log(artistMBID);
-                let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                console.log(artistName);
-
-                let placeholder = document.getElementById('placeholder');
-                placeholder.innerHTML = `For ${artistName} the MusicBrainz ID is ${artistMBID}`;
-            }
-
             function getAlbums(xhttp) {
                  let retrievedData = xhttp.responseXML;
                  console.log(retrievedData);

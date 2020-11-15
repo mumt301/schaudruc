@@ -48,10 +48,10 @@
             function getMBID(xhttp) {
                 let retrievedData = xhttp.responseXML;
                 console.log(retrievedData);
-                let artistData = retrievedData.getElementbyTagName('artist')[0];
+                let artistData = retrievedData.getElementsByTagName('artist')[0];
                 let artistMBID = artistData.id;
                 console.log(artistMBID);
-                let artistName = artistData.getElementByTagName('name')[0].innerHTML;
+                let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
                 console.log(artistName);
 
                 let placeholder = document.getElementById('placeholder');

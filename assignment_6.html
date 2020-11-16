@@ -59,16 +59,15 @@
                 
             }
 
-
             function queryAlbums() {
-                let params = (new URL(document.location)).searchParams;
-                if (params.has('release-group')) {
-                    let artistAlbums = params.get('release-group');
-                    console.log(artistMBID);
+                let params2 = (new URL(document.location)).searchParams;
+                if (params2.has('release-group')) {
+                    let artistAlbums = params2.get('release-group');
+                    console.log(artistAlbums);
 
-                    let mBaseURL = "https://musicbrainz.org/ws/2/";
-                    let mbResource = "release-group?artist=";
-                    let queryURL2 = mBaseURL + mbResource + artistAlbums;
+                    let mBaseURL2 = "https://musicbrainz.org/ws/2/";
+                    let mbResource2 = "release-group?artist=";
+                    let queryURL2 = mBaseURL2 + mbResource2 + artistMBID;
                     console.log(queryURL2);
 
                     httpGet(queryURL2, getAlbums);
@@ -88,9 +87,8 @@
                  let placeholder = document.getElementById('placeholder');
                  placeholder.innerHTML = `For ${artistName}, the title of an album is ${albumTitle} and the date of release is ${albumDate}`;
             }
-            /*
+            
             window.onload = queryArtist;
-            */
             window.onload = queryAlbums;
         </script>
     </body>

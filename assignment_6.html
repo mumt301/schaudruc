@@ -6,12 +6,12 @@
     <body>
         <div>
             <h2>Basic Call to the MusicBrainz API</h2>
-            <p>Retrieve MBID, album discography, and dates of release.</p>
+            <p>Retrieve Discography and dates of release.</p>
 
             <form method="GET">
                 <label for="name">Artist name?</label>
                 <input type="text" name="artist" id="name">
-                <input type="submit" value="Get MBID">
+                <input type="submit" value="Get Results">
             </form>
 
             <p id="placeholder"></p>
@@ -56,7 +56,6 @@
                 
                 let placeholder = document.getElementById('placeholder');
                 placeholder.innerHTML = `For ${artistName} the MusicBrainz ID is ${artistMBID}`;
-                
             }
 
             function queryAlbums() {
@@ -89,7 +88,7 @@
             }
             
             window.onload = queryArtist;
-            window.onload = queryAlbums;
+            /* window.onload = queryAlbums;
         </script>
     </body>
 </html>

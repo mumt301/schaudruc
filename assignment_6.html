@@ -75,9 +75,9 @@
             }
 
             function getAlbums(xhttp) {
-                 let retrievedData = xhttp.responseXML;
-                 console.log(retrievedData);
-                 let albumData = retrievedData.getElementsByTagName('release-group')[0];
+                 let retrievedData2 = xhttp.responseXML;
+                 console.log(retrievedData2);
+                 let albumData = retrievedData2.getElementsByTagName('release-group')[0];
                  
                  let albumTitle = albumData.getElementsByTagName('title')[0].innerHTML;
                  console.log(albumTitle)

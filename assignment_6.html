@@ -83,8 +83,7 @@
                          albums.push(all[i]);
                      }
                  }
-
-                 sortedAlbums=albums.sort(a,b)=>new Date(a.getElementsByTagName(first-release-date)[0].innerHTML) - new Date(b.getElementsByTagName('first-release-date')[0].innerHTML));
+                 sortedAlbums=albums.sort((a,b)=>new Date(a.getElementsByTagName('first-release-date')[0].innerHTML) - new Date(b.getElementsByTagName('first-release-date')[0].innerHTML));
                  displayTable(sortedAlbums);
             }
 

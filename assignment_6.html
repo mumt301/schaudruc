@@ -2,6 +2,23 @@
     <head>
         <title>MusicBrainz API Call</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            table {
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            td, th {
+                border: 2px solid blueviolet;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: yellow
+            }
+        </style>
     </head>
     <body>
         <div>
@@ -17,19 +34,14 @@
             <p id="placeholder"></p>
 
         </div>
-
         <script type="text/JavaScript">
             function queryArtist() {
                 let params = (new URL(document.location)).searchParams;
                 if (params.has('artist')) {
                     let artistName = params.get('artist');
-                    console.log(artistName);
-
                     let mBaseURL = "https://musicbrainz.org/ws/2/";
                     let mbResource = "artist?query=";
                     let queryURL = mBaseURL + mbResource + artistName;
-                    console.log(queryURL);
-
                     httpGet(queryURL, getMBID);
                 }
             }
@@ -50,47 +62,57 @@
                 console.log(retrievedData);
                 let artistData = retrievedData.getElementsByTagName('artist')[0];
                 let artistMBID = artistData.id;
-                console.log(artistMBID);
                 let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                console.log(artistName);
-                
-                let placeholder = document.getElementById('placeholder');
-                placeholder.innerHTML = `For ${artistName} the MusicBrainz ID is ${artistMBID}`;
-            }
 
-            function queryAlbums() {
-                let params2 = (new URL(document.location)).searchParams;
-                if (params2.has('release-group')) {
-                    let artistAlbums = params2.get('release-group');
-                    console.log(artistAlbums);
-
-                    let mBaseURL2 = "https://musicbrainz.org/ws/2/";
-                    let mbResource2 = "release-group?artist=";
-                    let queryURL2 = mBaseURL2 + mbResource2 + artistMBID;
-                    console.log(queryURL2);
-
-                    httpGet(queryURL2, getAlbums);
-                }
+                let mBaseURL = "https://musicbrainz.org/ws/2/release-group?artist=";
+                let queryURL = mBaseURL + artistMBID;
+                console.log(queryURL);
+                httpGet(queryURL, getAlbums)
             }
 
             function getAlbums(xhttp) {
-                 let retrievedData2 = xhttp.responseXML;
-                 console.log(retrievedData2);
-                 let albumData = retrievedData2.getElementsByTagName('release-group')[0];
+                 let retrievedData = xhttp.responseXML;
+                 console.log(retrievedData);
+                 var albums = [];
+                 let all=retrievedData.getElementsByTagName("release-group");
                  
-                 let albumTitle = albumData.getElementsByTagName('title')[0].innerHTML;
-                 console.log(albumTitle)
-                 let albumDate = albumData.getElementsByTagName('first-release-date')[0].innerHTML;
-                 console.log(albumDate);
+                 for (var i = all.length - 1; i >=0; i--) {
+                     let type=all[i].getAttribute('type');
+                     console.log(type);
+                     if(type=='Album') {
+                         albums.push(all[i]);
+                     }
+                 }
 
-                 let placeholder = document.getElementById('placeholder');
-                 placeholder.innerHTML = `For ${artistName}, the title of an album is ${albumTitle} and the date of release is ${albumDate}`;
+                 sortedAlbums=albums.sort(a,b)=>new Date(a.getElementsByTagName(first-release-date)[0].innerHTML) - new Date(b.getElementsByTagName('first-release-date')[0].innerHTML));
+                 displayTable(sortedAlbums);
             }
-            
+
+            function displayTable(albums) {
+                let table = document.createElement('table');
+                table.id = "table";
+                tr = document.createElement('tr');
+                td1 = document.createElement('td');
+                tr.appendChild(td1);
+                td1.innerHTML = "<b>Album Name<b>";
+                td2 = document.createElement('td');
+                tr.appendChild(td2);
+                td2.innerHTML = "<b>Date of Release<b>";
+                table.appendChild(tr);
+
+                for (row = 0; row < albums.length; row++) {
+                    tr = document.createElement('tr');
+                    td1 = document.createElement('td');
+                    tr.appendChild(td1);
+                    td1.innerHTML = albums[row].getElementsByTagName('title')[0].innerHTML;
+                    td2 = document.createElement('td');
+                    tr.appendChild(td2);
+                    td2.innerHTML = albums[row].getElementsByTagName('first-release-date')[0].innerHTML;
+                    table.appendChild(tr);
+                }
+                document.getElementById('table').appendChild(table);
+            }
             window.onload = queryArtist;
-            /* 
-            window.onload = queryAlbums;
-            */
         </script>
     </body>
 </html>

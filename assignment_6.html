@@ -20,20 +20,18 @@
             }
         </style>
     </head>
-    <body>
+    <body data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="">
         <div>
             <h2>Basic Call to the MusicBrainz API</h2>
-            <p>Retrieve Discography and dates of release.</p>
+            <p>Retrieve discography and dates of release.</p>
 
-            <form method="GET">
+            <form id='artist' method="GET">
                 <label for="name">Artist name?</label>
                 <input type="text" name="artist" id="name">
                 <input type="submit" value="Get Results">
             </form>
-
-            <p id="placeholder"></p>
-
         </div>
+        <div id="table" class="container"></div>
         <script type="text/JavaScript">
             function queryArtist() {
                 let params = (new URL(document.location)).searchParams;
@@ -88,7 +86,7 @@
 
             function displayTable(albums) {
                 let table = document.createElement('table');
-                table.id = "table";
+                table.id = 'table';
                 tr = document.createElement('tr');
                 td1 = document.createElement('td');
                 tr.appendChild(td1);

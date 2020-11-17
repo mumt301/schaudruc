@@ -74,8 +74,7 @@
                  let retrievedData = xhttp.responseXML;
                  console.log(retrievedData);
                  var albums = [];
-                 let all=retrievedData.getElementsByTagName("release-group");
-                 
+                 let all=retrievedData.getElementsByTagName('release-group');
                  for (var i = all.length - 1; i >=0; i--) {
                      let type=all[i].getAttribute('type');
                      console.log(type);

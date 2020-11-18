@@ -46,7 +46,7 @@
 
             function getBioAndImage(xhttp) {
                 let retrievedData = xhttp.responseXML;
-                console.log(retrtievedData);
+                console.log(retrievedData);
                 let artistMBID = retrievedData.getElementsByTagName('mbid')[0].innerHTML;
                 console.log(artistMBID);
                 let bioContent = retrievedData.getElementsByTagName('content')[0].innerHTML;

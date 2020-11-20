@@ -37,7 +37,7 @@
                     console.log(artistName);
                     let trackName = params.get('trackName');
                     console.log(trackName);
-                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
+                    let queryURL = "http://ws.audioscrobbler.com/2.0/" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
                     console.log(queryURL)
                     httpGet(queryURL, getSimilarTracks);
                 }

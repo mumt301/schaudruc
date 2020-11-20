@@ -48,6 +48,7 @@
                 let retrievedData = xhttp.responseXML;
                 let similarTrackName1 = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0].innerHTML;
                 resultTracks.push(similarTrackName1);
+                console.log(similarTrackName1);
                 let similarTrackName2 = retrievedData.getElementsByTagName('track')[1].getElementsByTagName('name')[1].innerHTML;
                 resultTracks.push(similarTrackName2);
                 let similarTrackName3 = retrievedData.getElementsByTagName('track')[2].getElementsByTagName('name')[2].innerHTML;
@@ -56,6 +57,7 @@
                 resultTracks.push(similarTrackName4);
                 let similarTrackName5 = retrievedData.getElementsByTagName('track')[4].getElementsByTagName('name')[4].innerHTML;
                 resultTracks.push(similarTrackName5);
+                console.log(similarTrackName5);
 
                 let similarArtistName1 = retrievedData.getElementsByTagName('artist')[0].getElementsByTagName('name')[0].innerHTML;
                 let similarArtistName2 = retrievedData.getElementsByTagName('artist')[1].getElementsByTagName('name')[1].innerHTML;

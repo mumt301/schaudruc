@@ -32,7 +32,7 @@
                     let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
                     console.log(queryURL);
 
-                    httpGet(queryURL, getBioAndImage)
+                    httpGet(queryURL, getSimilarTracks)
                 }
             }
 
@@ -47,33 +47,33 @@
                 }
             }
 
-            function getBioAndImage(xhttp) {
+            function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
                 console.log(retrievedData);
-                let artistMBID = retrievedData.getElementsByTagName('mbid')[0].innerHTML;
-                console.log(artistMBID);
-                let bioContent = retrievedData.getElementsByTagName('content')[0].innerHTML;
-                console.log(bioContent);
-                let infobox = document.getElementById('bioContainer');
-                let bio = document.createElement('p');
-                bio.innerHTML = bioContent;
-                infobox.appendChild(bio);
+                let trackData = retrievedData.getElementsByTagName('track')[0];
+                let trackName = trackData.getElementsByTagName('name')[0].innerHTML;
+                let artistData = retrievedData.getElementsByTagName('artist')[0];
+                let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
 
-                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "artist.gettopalbums" + "&mbid=" + artistMBID + "&api_key=" + apiKey;
+                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + artistName + "&track=" + trackName;
                 console.log(queryURL2);
-
-                httpGet(queryURL2, getImage)
+                httpGet(queryURL2, getTrackInfoAndImage)
             }
 
-            function getImage(xhttp) {
+            function getTrackInfoAndImage(xhttp) {
                 let retrievedData2 = xhttp.responseXML;
-                console.log(retrievedData2);
+                console.log(retrievedData);
+                let bioContent = retrievedData2.getElementsByTagName('content')[0].innerHTML;
+                console.log(bioContent);
                 let imageURL = retrievedData2.getElementsByTagName('image')[3].innerHTML;
                 console.log(imageURL);
 
                 let infobox = document.getElementById('bioContainer');
+                let bio = document.createElement('p');
                 let image = document.createElement('img');
+                bio.innerHTML = bioContent;
                 image.src = imageURL;
+                infobox.appendChild(bio);
                 infobox.appendChild(image);
             }
 

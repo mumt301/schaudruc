@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>API Mash-up</title>
+        <link rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .image-pad {
+                float: left;
+                padding-top: 5px;
+                padding-right: 50px;
+                padding-bottom: 30px;
+                padding-left: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Type the name of a track you love and its artist!</h1>
+
+        <form method="GET">
+            <label for="track">Track name:</label>
+            <input type="text" name="trackName" id="track">
+            <br>
+            <label for="artist">Artist name:</label>
+            <input type="text" name="artistName" id="artist">
+            <input type="submit">
+        </form>
+
+        <div id="bioContainer"></div>
+
+        <script type='text/JavaScript'>
+            const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
+
+            function queryArtistAndTrack () {
+                // get artist and track name from form 
+                let params = (new URL(document.location)).searchParams;
+                if (params.has('artistName') && params.has('trackName')) {
+                    let artistName = params.get('artistName');
+                    console.log(artistName);
+                    let trackName = params.get('trackName');
+                    console.log(trackName);
+
+                    // create the API call 
+                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
+                    retrievedData = httpGet(queryURL);
+
+                    // parse the repsonse
+                    let trackData = retrievedData.getElementsByTagName('track')[0];
+                    let similarTrackName = trackData.getElementsByTagName('name');
+                    let artistData = retrievedData.getElementsByTagName('artist')[0];
+                    let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
+                    let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
+                    retrievedData2 = httpGet(queryURL2);
+
+                    // append the results to the DOM
+                    var similarTracks = [];
+                    for (var i = 0; i < 5; i++) {
+                        similarTracks.push(similarTrackName[i].innerHTML);
+                    }
+                    console.log("Similar artists:" + similarTracks)
+
+
+
+
+
+                

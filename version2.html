@@ -27,36 +27,50 @@
 
         <div id="bioContainer"></div>
 
-        <script type='text/JavaScript'>
-            const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
+    <script type='text/JavaScript'>
+        const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
 
-            function queryArtistAndTrack () {
-                // get artist and track name from form 
-                let params = (new URL(document.location)).searchParams;
-                if (params.has('artistName') && params.has('trackName')) {
-                    let artistName = params.get('artistName');
-                    console.log(artistName);
-                    let trackName = params.get('trackName');
-                    console.log(trackName);
+        function queryArtistAndTrack () {
+            // get artist and track name from form 
+            let params = (new URL(document.location)).searchParams;
+            if (params.has('artistName') && params.has('trackName')) {
+                let artistName = params.get('artistName');
+                console.log(artistName);
+                let trackName = params.get('trackName');
+                console.log(trackName);
 
-                    // create the API call 
-                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
-                    retrievedData = httpGet(queryURL);
+                // create the API call 
+                let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
+                retrievedData = httpGet(queryURL);
 
-                    // parse the repsonse
-                    let trackData = retrievedData.getElementsByTagName('track')[0];
-                    let similarTrackName = trackData.getElementsByTagName('name');
-                    let artistData = retrievedData.getElementsByTagName('artist')[0];
-                    let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                    let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
-                    retrievedData2 = httpGet(queryURL2);
+                // parse the repsonse
+                let trackData = retrievedData.getElementsByTagName('track')[0];
+                let similarTrackName = trackData.getElementsByTagName('name');
+                let artistData = retrievedData.getElementsByTagName('artist')[0];
+                let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
+                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
+                retrievedData2 = httpGet(queryURL2);
 
-                    // append the results to the DOM
-                    var similarTracks = [];
-                    for (var i = 0; i < 5; i++) {
-                        similarTracks.push(similarTrackName[i].innerHTML);
-                    }
-                    console.log("Similar artists:" + similarTracks)
+                // append the results to the DOM
+                var similarTracks = [];
+                for (var i = 0; i < 5; i++) {
+                    similarTracks.push(similarTrackName[i].innerHTML);
+                }
+                console.log("Similar artists:" + similarTracks)
+            }
+        }   
+        
+        function httpGet(theUrl) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", theUrl, false);
+            xmlHttp.send();
+            return xmlHttp.responseXML;
+        }
+    </script>     
+    </body>
+</html>
+        
+
 
 
 

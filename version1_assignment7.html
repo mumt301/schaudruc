@@ -60,13 +60,13 @@
                 resultTracks.push(similarTrackName5);
                 console.log(similarTrackName5);
 
+                console.log("Similar tracks: " + resultTracks);
+
                 let similarArtistName1 = retrievedData.getElementsByTagName('artist')[0].getElementsByTagName('name')[0].innerHTML;
                 let similarArtistName2 = retrievedData.getElementsByTagName('artist')[1].getElementsByTagName('name')[1].innerHTML;
                 let similarArtistName3 = retrievedData.getElementsByTagName('artist')[2].getElementsByTagName('name')[2].innerHTML;
                 let similarArtistName4 = retrievedData.getElementsByTagName('artist')[3].getElementsByTagName('name')[3].innerHTML;
                 let similarArtistName5 = retrievedData.getElementsByTagName('artist')[4].getElementsByTagName('name')[4].innerHTML;
-        
-                console.log("Similar tracks: " + resultTracks);
 
                 let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
                 httpGet(queryURL2, getTrackInfoAndImage);

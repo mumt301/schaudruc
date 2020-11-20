@@ -46,13 +46,14 @@
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
                 let trackData = retrievedData.getElementsByTagName('track')[0];
+                console.log(trackData);
                 let similarTrackName = trackData.getElementsByTagName('name')[0].innerHTML;
                 console.log(similarTrackName);
 
                 for (var i = 0; i < 5; i++) {
                     resultTracks.push(similarTrackName);
                 }
-                console.log("Similar tracks: " + resultTracks)
+                console.log("Similar tracks: " + resultTracks);
 
                 let artistData = retrievedData.getElementsByTagName('artist')[0];
                 let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;

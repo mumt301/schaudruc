@@ -47,16 +47,15 @@
                 let retrievedData = xhttp.responseXML;
                 for (var i = 0; i < 5; i++) {
                     let trackData = retrievedData.getElementsByTagName('track')[i];
-                    console.log(trackData);
                     let similarTrackName = trackData.getElementsByTagName('name')[i].innerHTML;
                     console.log(similarTrackName);
+
+                    let artistData = retrievedData.getElementsByTagName('artist')[i];
+                    let similarArtistName = artistData.getElementsByTagName('name')[i].innerHTML;
+                    console.log(similarArtistName);
                     resultTracks.push(similarTrackName);
                 }
                 console.log("Similar tracks: " + resultTracks);
-
-                let artistData = retrievedData.getElementsByTagName('artist')[0];
-                let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                console.log(similarArtistName);
 
                 let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
                 httpGet(queryURL2, getTrackInfoAndImage);

@@ -84,12 +84,6 @@
                 let image = document.createElement('img');
                 image.src = imageURL;
                 infobox.appendChild(image);
-
-                var resultTracks = [];
-                for (var i = 0; i < 5; i++) {
-                    resultTracks.push(resultTracks[i].innerHTML);
-                }
-                console.log("Similar Tracks:" + resultTracks)
             }
 
             window.onload = queryArtistAndTrack;

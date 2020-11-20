@@ -42,17 +42,6 @@
                 }
             }
 
-            function httpGet (theURL, cbFunction) {
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.open('GET', theURL);
-                xmlHttp.send();
-                xmlHttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        cbFunction(this);
-                    }
-                }
-            }
-
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
                 let trackData = retrievedData.getElementsByTagName('track')[0];
@@ -81,6 +70,17 @@
                 let image = document.createElement('img');
                 image.src = imageURL;
                 infobox.appendChild(image);
+            }
+
+            function httpGet (theURL, cbFunction) {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open('GET', theURL);
+                xmlHttp.send();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cbFunction(this);
+                    }
+                }
             }
 
             window.onload = queryArtistAndTrack;

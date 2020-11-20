@@ -44,19 +44,25 @@
             }
 
             function getSimilarTracks (xhttp) {
-                let retrievedData = xhttp.responseXML;
-                let similarTrackName = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0].innerHTML;
-                console.log(similarTrackName);
-
-                let artistData = retrievedData.getElementsByTagName('artist')[0];
-                let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                console.log(similarArtistName);
-
                 var resultTracks = [];
-                for (var i = 0; i < 5; i++) {
-                    console.log(similarTrackName);
-                    resultTracks.push(similarTrackName);
-                }
+                let retrievedData = xhttp.responseXML;
+                let similarTrackName1 = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0].innerHTML;
+                resultTracks.push(similarTrackName1);
+                let similarTrackName2 = retrievedData.getElementsByTagName('track')[1].getElementsByTagName('name')[1].innerHTML;
+                resultTracks.push(similarTrackName2);
+                let similarTrackName3 = retrievedData.getElementsByTagName('track')[2].getElementsByTagName('name')[2].innerHTML;
+                resultTracks.push(similarTrackName3);
+                let similarTrackName4 = retrievedData.getElementsByTagName('track')[3].getElementsByTagName('name')[3].innerHTML;
+                resultTracks.push(similarTrackName4);
+                let similarTrackName5 = retrievedData.getElementsByTagName('track')[4].getElementsByTagName('name')[4].innerHTML;
+                resultTracks.push(similarTrackName5);
+
+                let similarArtistName1 = retrievedData.getElementsByTagName('artist')[0].getElementsByTagName('name')[0].innerHTML;
+                let similarArtistName2 = retrievedData.getElementsByTagName('artist')[1].getElementsByTagName('name')[1].innerHTML;
+                let similarArtistName3 = retrievedData.getElementsByTagName('artist')[2].getElementsByTagName('name')[2].innerHTML;
+                let similarArtistName4 = retrievedData.getElementsByTagName('artist')[3].getElementsByTagName('name')[3].innerHTML;
+                let similarArtistName5 = retrievedData.getElementsByTagName('artist')[4].getElementsByTagName('name')[4].innerHTML;
+        
                 console.log("Similar tracks: " + resultTracks);
 
                 let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;

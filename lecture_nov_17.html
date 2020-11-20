@@ -64,6 +64,12 @@
                 let artistData = retrievedData.getElementsByTagName('artist')[0];
                 let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
 
+                var resultTracks = [];
+                for (var i = 0; i < 5; i++) {
+                    resultTracks.push(resultTracks[i].innerHTML);
+                }
+                console.log("Similar Tracks:" + resultTracks)
+
                 let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + artistName + "&track=" + trackName;
                 console.log(queryURL2);
                 httpGet(queryURL2, getTrackInfoAndImage)

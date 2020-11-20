@@ -34,9 +34,11 @@
                 let params = (new URL(document.location)).searchParams;
                 if (params.has('artistName') && params.has('trackName')) {
                     let artistName = params.get('artistName');
+                    console.log(artistName);
                     let trackName = params.get('trackName');
+                    console.log(trackName);
                     let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
-                    httpGet(queryURL, getSimilarTracks)
+                    httpGet(queryURL, getSimilarTracks);
                 }
             }
 
@@ -54,24 +56,28 @@
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
                 let trackData = retrievedData.getElementsByTagName('track')[0];
-                let trackName = trackData.getElementsByTagName('name')[0].innerHTML;
-                let artistData = retrievedData.getElementsByTagName('artist')[0];
-                let artistName = artistData.getElementsByTagName('name')[0].innerHTML;
-                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + artistName + "&track=" + trackName;
+                let similarTrackName = trackData.getElementsByTagName('name')[0].innerHTML;
+                console.log(similarTrackName);
 
-                httpGet(queryURL2, getTrackInfoAndImage)
+                let artistData = retrievedData.getElementsByTagName('artist')[0];
+                let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
+                console.log(similarArtistName);
+
+                let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
+                httpGet(queryURL2, getTrackInfoAndImage);
             }
 
             function getTrackInfoAndImage(xhttp) {
                 let retrievedData2 = xhttp.responseXML;
                 let bioContent = retrievedData2.getElementsByTagName('content')[0].innerHTML;
+                console.log(bioContent);
                 let infobox = document.getElementById('bioContainer');
                 let bio = document.createElement('p');
                 bio.innerHTML = bioContent;
                 infobox.appendChild(bio);
 
                 let imageURL = retrievedData2.getElementsByTagName('image')[3].innerHTML;
-                let image = document.createElement('img');
+                console.log(imageURL);
                 image.src = imageURL;
                 infobox.appendChild(image);
             }

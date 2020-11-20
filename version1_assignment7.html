@@ -29,6 +29,7 @@
 
         <script type='text/JavaScript'>
             const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
+            var resultTracks = [];
 
             function queryArtistAndTrack () {
                 let params = (new URL(document.location)).searchParams;
@@ -44,9 +45,14 @@
 
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
-                let trackData = retrievedData.getElementsByTagName('track')[0];
+                trackData = retrievedData.getElementsByTagName('track')[0];
                 let similarTrackName = trackData.getElementsByTagName('name')[0].innerHTML;
                 console.log(similarTrackName);
+                
+                for (var i = 0; i < 5; i++) {
+                    resultTracks.push(similarTrackName[i].innerHTML);
+                }
+                console.log("Similar tracks: " + resultTracks)
 
                 let artistData = retrievedData.getElementsByTagName('artist')[0];
                 let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;

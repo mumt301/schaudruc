@@ -3,6 +3,15 @@
         <title>API Mash-up</title>
         <link rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .image-pad {
+                float: left;
+                padding-top: 5px;
+                padding-right: 50px;
+                padding-bottom: 30px;
+                padding-left: 0px;
+            }
+        </style>
     </head>
     <body>
         <h1>Type the name of a track you love and its artist!</h1>
@@ -70,7 +79,7 @@
                 bio.innerHTML = bioContent;
                 infobox.appendChild(bio);
 
-                let imageURL = retrievedData2.getElementsByTagName('image')[3];
+                let imageURL = retrievedData2.getElementsByTagName('image')[3].innerHTML;
                 console.log(imageURL);
                 let image = document.createElement('img');
                 image.src = imageURL;

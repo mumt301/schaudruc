@@ -65,15 +65,15 @@
                 console.log(retrievedData2);
                 let bioContent = retrievedData2.getElementsByTagName('content')[0].innerHTML;
                 console.log(bioContent);
-                let imageURL = retrievedData2.getElementsByTagName('image')[3];
-                console.log(imageURL);
-
                 let infobox = document.getElementById('bioContainer');
                 let bio = document.createElement('p');
-                let image = document.createElement('img');
                 bio.innerHTML = bioContent;
-                image.src = imageURL;
                 infobox.appendChild(bio);
+
+                let imageURL = retrievedData2.getElementsByTagName('image')[3];
+                console.log(imageURL);
+                let image = document.createElement('img');
+                image.src = imageURL;
                 infobox.appendChild(image);
             }
 

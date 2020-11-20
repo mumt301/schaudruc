@@ -21,29 +21,18 @@
         <script type='text/JavaScript'>
             const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
 
-            function queryArtist () {
+            function queryArtistAndTrack () {
                 let params = (new URL(document.location)).searchParams;
-                if (params.has('artistName')) {
+                if (params.has('artistName') && params.has('trackName')) {
                     let artistName = params.get('artistName');
                     console.log(artistName);
-
-                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "artist.getinfo" + "&artist=" + artistName + "&api_key=" + apiKey;
-                    console.log(queryURL);
-
-                    httpGet(queryURL, getBioAndImage)
-                }
-            }
-
-            function queryTrack () {
-                let params = (new URL(document.location)).searchParams;
-                if (params.has('trackName')) {
                     let trackName = params.get('trackName');
                     console.log(trackName);
 
-                    let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + artistName + "&track=" + trackName;
-                    console.log(queryURL2);
+                    let queryURL = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
+                    console.log(queryURL);
 
-                    httpGet(queryURL2, getTrackBioAndImage)
+                    httpGet(queryURL, getBioAndImage)
                 }
             }
 

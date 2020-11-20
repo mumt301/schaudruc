@@ -47,13 +47,13 @@
                 let retrievedData = xhttp.responseXML;
                 for (var i = 0; i < 5; i++) {
                     let trackData = retrievedData.getElementsByTagName('track')[i];
-                    let similarTrackName = trackData.getElementsByTagName('name')[i].innerHTML;
+                    let similarTrackName = trackData.getElementsByTagName('name');
                     console.log(similarTrackName);
 
                     let artistData = retrievedData.getElementsByTagName('artist')[i];
-                    let similarArtistName = artistData.getElementsByTagName('name')[i];
+                    let similarArtistName = artistData.getElementsByTagName('name')[i].innerHTML;
                     console.log(similarArtistName);
-                    resultTracks.push(similarTrackName);
+                    resultTracks.push(similarTrackName[i].innerHTML);
                 }
                 console.log("Similar tracks: " + resultTracks);
 

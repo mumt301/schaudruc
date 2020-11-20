@@ -45,6 +45,7 @@
 
             function getSimilarTracks (xhttp) {
                 var resultTracks = [];
+                console.log(trackName);
                 let retrievedData = xhttp.responseXML;
 
                 let similarTrackName = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0].innerHTML;

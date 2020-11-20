@@ -29,7 +29,6 @@
 
         <script type='text/JavaScript'>
             const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
-            var resultTracks = [];
 
             function queryArtistAndTrack () {
                 let params = (new URL(document.location)).searchParams;
@@ -53,6 +52,7 @@
                 let similarArtistName = artistData.getElementsByTagName('name')[0].innerHTML;
                 console.log(similarArtistName);
 
+                var resultTracks = [];
                 for (var i = 0; i < 5; i++) {
                     resultTracks.push(similarTrackName);
                 }

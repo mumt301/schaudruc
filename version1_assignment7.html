@@ -45,7 +45,7 @@
 
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
-                let similarTrackName = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0];
+                let similarTrackName = retrievedData.getElementsByTagName('track')[0].getElementsByTagName('name')[0].innerHTML;
                 console.log(similarTrackName);
 
                 let artistData = retrievedData.getElementsByTagName('artist')[0];

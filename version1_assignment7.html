@@ -45,12 +45,12 @@
 
             function getSimilarTracks (xhttp) {
                 let retrievedData = xhttp.responseXML;
-                trackData = retrievedData.getElementsByTagName('track')[0];
+                let trackData = retrievedData.getElementsByTagName('track')[0];
                 let similarTrackName = trackData.getElementsByTagName('name')[0].innerHTML;
                 console.log(similarTrackName);
-                
+
                 for (var i = 0; i < 5; i++) {
-                    resultTracks.push(similarTrackName[i].innerHTML);
+                    resultTracks.push(similarTrackName[i]);
                 }
                 console.log("Similar tracks: " + resultTracks)
 

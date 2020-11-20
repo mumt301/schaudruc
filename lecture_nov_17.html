@@ -65,6 +65,7 @@
             function getTrackInfoAndImage(xhttp) {
                 var resultTracks = [];
                 for (var i = 0; i < 5; i++) {
+                    resultTracks.push(trackName[i].innerHTML)
                     let retrievedData2 = xhttp.responseXML;
                     console.log(retrievedData2);
                     let bioContent = retrievedData2.getElementsByTagName('content')[0].innerHTML;

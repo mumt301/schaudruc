@@ -28,10 +28,10 @@
         <div id="bioContainer"></div>
 
     <script type='text/JavaScript'>
-        const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
-
         function queryArtistAndTrack () {
-            // get artist and track name from form 
+            const apiKey = "2a251e83d22408e76b6faeee0cb94d04";
+
+            // get artist & track name from form 
             let params = (new URL(document.location)).searchParams;
             if (params.has('artistName') && params.has('trackName')) {
                 let artistName = params.get('artistName');
@@ -56,10 +56,10 @@
                 for (var i = 0; i < 5; i++) {
                     similarTracks.push(similarTrackName[i].innerHTML);
                 }
-                console.log("Similar artists:" + similarTracks)
+                console.log("Similar tracks:" + similarTracks)
             }
         }   
-        
+
         function httpGet(theUrl) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", theUrl, false);

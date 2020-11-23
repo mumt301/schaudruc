@@ -54,7 +54,7 @@
 
             function getTrackInfoAndImage(xhttp) {
                 let retrievedData2 = xhttp.responseXML;
-                let bioContent = retrievedData2.getElementsByTagName('summary')[0];
+                let bioContent = retrievedData2.getElementsByTagName('summary')[0].innerHTML;
                 console.log(bioContent);
                 let infobox = document.getElementById('bioContainer');
                 let bio = document.createElement('p');

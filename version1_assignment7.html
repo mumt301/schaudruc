@@ -28,7 +28,7 @@
                     console.log(artistName);
                     let trackName = params.get('trackName');
                     console.log(trackName);
-                    let queryURL = "http://ws.audioscrobbler.com/2.0/" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
+                    let queryURL = "https://ws.audioscrobbler.com/2.0/" + "?method=" + "track.getsimilar" + "&artist=" + artistName + "&track=" + trackName + "&api_key=" + apiKey;
                     console.log(queryURL)
                     httpGet(queryURL, getSimilarTracks);
                 }
@@ -45,7 +45,7 @@
                     let similarTrackName = similarTrack[i].getElementsByTagName('name')[0].innerHTML;
                     let similarArtistName = similarArtist[i].getElementsByTagName('name')[0].innerHTML;
                     resultTracks.push(similarTrackName);
-                    let queryURL2 = "http://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
+                    let queryURL2 = "https://ws.audioscrobbler.com/2.0" + "?method=" + "track.getInfo" + "&api_key=" + apiKey + "&artist=" + similarArtistName + "&track=" + similarTrackName;
                     console.log(queryURL2);
                     httpGet(queryURL2, getTrackInfoAndImage);
                 }

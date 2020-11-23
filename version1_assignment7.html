@@ -48,7 +48,7 @@
                 let retrievedData = xhttp.responseXML;
 
                 let similarTrack = retrievedData.getElementsByTagName('track');
-                let similarArtist = retrievedData.getElementsByTagName('artist')[0];
+                let similarArtist = retrievedData.getElementsByTagName('artist');
 
                 for (var i = 0; i < 5; i++) {
                     let similarTrackName = similarTrack[0].getElementsByTagName('name').innerHTML;

@@ -48,13 +48,12 @@
                 let retrievedData = xhttp.responseXML;
 
                 let similarTrack = retrievedData.getElementsByTagName('track');
-                let similarTrackName = similarTrack[0].getElementsByTagName('name').innerHTML;
-
                 let similarArtist = retrievedData.getElementsByTagName('artist')[0];
-                let similarArtistNames = similarArtist[0].getElementsByTagName('name').innerHTML;
 
                 for (var i = 0; i < 5; i++) {
-                    resultTracks.push(similarTrackName);
+                    let similarTrackName = similarTrack[0].getElementsByTagName('name').innerHTML;
+                    let similarArtistNames = similarArtist[0].getElementsByTagName('name').innerHTML;
+                    resultTracks.push(similarTrackName[0]);
                 }
                 console.log("Similar tracks: " + resultTracks);
 

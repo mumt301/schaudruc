@@ -29,7 +29,7 @@
                     let trackName = params.get('trackName');
                     console.log(trackName);
                     let queryURL = "https://api.spotify.com/v1/search" + "?q=track:" + trackName + "%20artist:" + artistName + "&type=track";
-                    console.log(queryURL, )
+                    console.log(queryURL)
                     httpGet(queryURL);
                 }
             }

@@ -5,12 +5,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1>Type the name of an artist you love</h1>
+        <h1>Type the name of a track you love and its artist!</h1>
 
         <form method="GET">
+            <label for="track">Track name:</label>
+            <input type="text" name="trackName" id="track">
+            <br>
             <label for="artist">Artist name:</label>
             <input type="text" name="artistName" id="artist">
-            <br>
             <input type="submit">
         </form>
-        
+
+        <div id="container"></div>
+
+        <script>
+            const clientID = "d30523ae4669444eb8812a8979bfb04c";
+
+            function queryArtistAndTrack () {
+                let params = (new URL(document.location)).searchParams;
+                if (params.has('artistName') && params.has('trackName')) {
+                    let artistName = params.get('artistName');
+                    console.log(artistName);
+                    let trackName = params.get('trackName');
+                    console.log(trackName);
+                    let queryURL = "https://api.spotify.com/v1/search" + "?q=track:" + trackName + "%20artist:" + artistName + "&type=track";
+                    console.log(queryURL)
+                    httpGet(queryURL, getSimilarTracks);
+                }
+            }
+
+            function httpGet (theURL, cbFunction) {
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.open('GET', theURL);
+                xmlHttp.setRequestHeader("Authorization: Bearer", "BQAwwfCylY7WKAUHDFGC7pSS3MxvGPb7MKmpZbv3j_nH1IN_BS6AgA6u7WyylGzDMfbtBYhjILNrltsICCke9QAAapCCN7F74Z1eD6RRlqkk85GQ_fJsK_BWN3WNNPIqbcV8mEx3x10bSg");
+                xmlHttp.send();
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cbFunction(this);
+                }
+            }
+        }
+        </script>
+    </body>
+</html>

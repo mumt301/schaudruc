@@ -18,8 +18,11 @@
 
         <div id="container"></div>
 
+        <script src="spotify.js"></script>
+
         <script type='text/JavaScript'>
-            const clientID = "d30523ae4669444eb8812a8979bfb04c";
+            var spotifyApi = new SpotifyWebApi();
+            spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
 
             function queryArtistAndTrack () {
                 let params = (new URL(document.location)).searchParams;
@@ -37,7 +40,6 @@
             function httpGet (theURL, cbFunction) {
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.open('GET', theURL);
-                xmlHttp.setRequestHeader("Authorization", "BQAwwfCylY7WKAUHDFGC7pSS3MxvGPb7MKmpZbv3j_nH1IN_BS6AgA6u7WyylGzDMfbtBYhjILNrltsICCke9QAAapCCN7F74Z1eD6RRlqkk85GQ_fJsK_BWN3WNNPIqbcV8mEx3x10bSg");
                 xmlHttp.send();
                 xmlHttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
@@ -45,8 +47,6 @@
                 }
             }
         }
-
-        window.onload = queryArtistAndTrack;
-        </script>
+        </script>   
     </body>
 </html>

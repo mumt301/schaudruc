@@ -23,6 +23,10 @@
         <script type='text/JavaScript'>
             var spotifyApi = new SpotifyWebApi();
             spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
+            spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
+                if (err) console.error(err);
+                else console.log('Artist albums', data);
+                });
 
             function queryArtistAndTrack () {
                 let params = (new URL(document.location)).searchParams;

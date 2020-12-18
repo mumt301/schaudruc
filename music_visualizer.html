@@ -7,7 +7,7 @@
     <body>
         <h1>Type the name of a track you love and its artist!</h1>
 
-        <form method="GET">
+        <form onsubmit="runJavaScript()">
             <label for="track">Track name:</label>
             <input type="text" name="trackName" id="track">
             <br>
@@ -21,18 +21,20 @@
         <script src="spotify.js"></script>
 
         <script type='text/JavaScript'>
-            var spotifyApi = new SpotifyWebApi();
-            spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
-            spotifyApi.searchTracks(trackName).then(
-                function(data) {
-                    console.log(data);
-                },
-                function(err) {
-                    console.log(err);
-                }
-            );
+            function runJavaScript() {
+                var spotifyApi = new SpotifyWebApi();
+                spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
+                spotifyApi.searchTracks(trackName).then(
+                    function(data) {
+                        console.log(data);
+                    },
+                    function(err) {
+                        console.log(err);
+                    }
+                );
+            }
 
-            function queryArtistAndTrack () {
+            function queryArtistAndTrack() {
                 let params = (new URL(document.location)).searchParams;
                 if (params.has('artistName') && params.has('trackName')) {
                     let artistName = params.get('artistName');
@@ -45,7 +47,7 @@
                 }
             }
 
-            function httpGet (theURL, cbFunction) {
+            function httpGet(theURL, cbFunction) {
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.open('GET', theURL);
                 xmlHttp.send();

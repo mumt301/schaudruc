@@ -1,0 +1,63 @@
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    color: blueviolet;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(24, 247, 255);
+    text-align: center;
+    border-style: dashed;
+    border-width: 3px;
+    border-color: rgb(24, 247, 255);
+    background-color: lightcoral;
+}
+
+#paragraphTwo {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: darkblue;
+    font-size: medium;
+}
+
+p::first-letter {
+    font-size: 200%;
+    color: yellowgreen;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+table, th, td {
+    border: 3px solid salmon;
+    border-collapse: collapse;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(143, 38, 27);
+    background-color: lightyellow;
+}
+
+ol {
+    list-style: none;
+    counter-reset: my-counter;
+}
+ol li {
+    counter-increment: my-counter;
+}
+ol li::before {
+    content: counter(my-counter)".";
+    color: rgb(56, 219, 170);
+    font-weight: bold;
+}
+
+a:link {
+    color: lightseagreen;
+    text-decoration: none;
+    border-bottom: 1px solid;
+}
+a:visited {
+    color: mediumvioletred;
+}
+a:hover {
+    color:pink;
+    border-bottom: none;
+}
+a:active {
+    color: purple;
+}

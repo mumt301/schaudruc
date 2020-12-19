@@ -32,7 +32,7 @@
                 
                 var xyz = new XMLHttpRequest();
                 xyz.open("POST",authUrl,true);
-                xyz.setRequestHeader('Authorization:','Basic' + encodedData);
+                xyz.setRequestHeader('Authorization','Basic' + encodedData);
                 xyz.onreadystatechange = function() {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     }

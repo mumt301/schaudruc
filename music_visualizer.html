@@ -31,7 +31,7 @@
                 var encodedData = encodedID + ':' + encodedSecret;
                 
                 var xyz = new XMLHttpRequest();
-                xyz.open("POST",authURL,true);
+                xyz.open("POST",authUrl,true);
                 xyz.setRequestHeader('Authorization','Basic' + encodedData);
                 xyz.onreadystatechange = function() {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {

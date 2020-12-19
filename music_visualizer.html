@@ -26,8 +26,8 @@
                 //var grant_type = client_credentials;
                 var headerID = 'd30523ae4669444eb8812a8979bfb04c';
                 var headerSecret = '6902861723d7473eb55d9dd341c575da';
-                var encodedID = btoa('d30523ae4669444eb8812a8979bfb04c');
-                var encodedSecret = btoa('6902861723d7473eb55d9dd341c575da');
+                var encodedID = btoa(headerID);
+                var encodedSecret = btoa(headerSecret);
                 var encodedData = encodedID + ':' + encodedSecret;
                 
                 var xyz = new XMLHttpRequest();

@@ -51,9 +51,11 @@
                         function(data) {
                             console.log(data);
                             for (var i = 0; i < 20; i++) {
-                                let resultTrack = data.tracks.items[i].artists[0].name;
-                                if (resultTrack == artistName) {
-                                    console.log(resultTrack);
+                                let resultArtist = data.tracks.items[i].artists[0].name;
+                                if (resultArtist == artistName) {
+                                    console.log(resultArtist);
+                                    var trackID = data.tracks.items[i].id;
+                                    console.log(trackID);
                                 }
                             }
                             /*

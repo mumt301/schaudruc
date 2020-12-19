@@ -22,6 +22,24 @@
 
         <script type='text/JavaScript'>
             function runJavaScript() {
+                var authUrl = 'https://accounts.spotify.com/api/token';
+                var grant_type = client_credentials;
+                var headerID = 'd30523ae4669444eb8812a8979bfb04c';
+                var headerSecret = '6902861723d7473eb55d9dd341c575da';
+                var encodedID = scope.btoa('d30523ae4669444eb8812a8979bfb04c');
+                var encodedSecret = scope.btoa('6902861723d7473eb55d9dd341c575da');
+                var encodedData = encodedID + ':' + encodedSecret;
+                
+                var xyz = new XMLHttpRequest();
+                xyz.open("POST",authURL,true);
+                xyz.setRequestHeader('Authorization','Basic' + encodedData);
+                xyz.onreadystatechange = function() {
+                    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    }
+                }
+                xyz.send('grant_type=client_credentials');
+                console.log(xyz);
+
                 var spotifyApi = new SpotifyWebApi();
                 spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
                 var track = 'Redbone';

@@ -32,13 +32,13 @@
                 
                 var xyz = new XMLHttpRequest();
                 xyz.open("POST",authUrl,true);
-                xyz.setRequestHeader('Authorization','Basic' + encodedData);
+                xyz.setRequestHeader('Authorization:','Basic' + encodedData);
                 xyz.onreadystatechange = function() {
                     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     }
                 }
-                xyz.send('grant_type=client_credentials');
                 console.log(xyz);
+                xyz.send('grant_type=client_credentials');
         
                 /*var spotifyApi = new SpotifyWebApi();
                 spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');

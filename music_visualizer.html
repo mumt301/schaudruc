@@ -38,26 +38,27 @@
                 // handle result...
 
                 let params = (new URL(document.location)).searchParams;
-                if (params.has('artistName') && params.has('trackName')) {
+                if (params.has('artistName') && params.has('trackName')) 
+                {
                     let artistName = params.get('artistName');
                     console.log(artistName);
                     let trackName = params.get('trackName');
                     console.log(trackName);
-
-                /////////////
-                var spotifyApi = new SpotifyWebApi();
-                spotifyApi.setAccessToken(access_token);
-                var track = trackName;
-                spotifyApi.searchTracks(track).then(
-                    function(data) {
-                        console.log(data);
-                    },
-                    function(err) {
-                        console.log(err);
-                    }
-                );
-                //////////////
-                });
+                }
+                        /////////////
+                        var spotifyApi = new SpotifyWebApi();
+                        spotifyApi.setAccessToken(access_token);
+                        var track = trackName;
+                        spotifyApi.searchTracks(track).then(
+                            function(data) {
+                                console.log(data);
+                            },
+                            function(err) {
+                                console.log(err);
+                            }
+                        );
+                        //////////////
+                }
                 
                 
             }

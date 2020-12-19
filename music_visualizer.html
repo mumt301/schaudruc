@@ -57,8 +57,14 @@
                                     var trackId = data.tracks.items[i].id;
                                     console.log(trackId);
 
-                                    var analysis = spotifyApi.getAudioAnalysisForTrack(trackId);
-                                    console.log(analysis);
+                                    spotifyApi.getAudioAnalysisForTrack(trackId).then(
+                                        function(data) {
+                                            console.log(data);
+                                        },
+                                        function (err) {
+                                            console.error(err);
+                                        }
+                                    );
                                 }
                             }
                             /*

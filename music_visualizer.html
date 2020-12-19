@@ -16,12 +16,43 @@
             <input type="submit">
         </form>
 
-        <div id="container"></div>
-
         <script src="spotify.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
         <script type='text/JavaScript'>
             function runJavaScript() {
+                $.ajax(
+                {
+                method: "POST",
+                url: "https://accounts.spotify.com/api/token",
+                data: {
+                "grant_type":"client_credentials",
+                //  "code":          code,
+                //  "redirect_uri":  myurl,
+                "client_secret":"6902861723d7473eb55d9dd341c575da",
+                "client_id":"d30523ae4669444eb8812a8979bfb04c",
+                },
+                success: function(result) {
+                console.log(result);
+                // handle result...
+                /////////////
+                var spotifyApi = new SpotifyWebApi();
+                spotifyApi.setAccessToken();
+                var track = 'Redbone';
+                spotifyApi.searchTracks(track).then(
+                    function(data) {
+                        console.log(data);
+                    },
+                    function(err) {
+                        console.log(err);
+                    }
+                );
+                //////////////
+                },
+                }
+                );
+
+                /*
                 var authUrl = 'https://accounts.spotify.com/api/token';
                 //var grant_type = client_credentials;
                 var headerID = 'd30523ae4669444eb8812a8979bfb04c';
@@ -39,19 +70,9 @@
                 }
                 console.log(xyz);
                 xyz.send('grant_type=client_credentials');
-        
-                /*var spotifyApi = new SpotifyWebApi();
-                spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
-                var track = 'Redbone';
-                spotifyApi.searchTracks(track).then(
-                    function(data) {
-                        console.log(data);
-                    },
-                    function(err) {
-                        console.log(err);
-                    }
-                );
                 */
+
+                
             }
 
             function queryArtistAndTrack() {

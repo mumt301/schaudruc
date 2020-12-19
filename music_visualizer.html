@@ -47,7 +47,7 @@
                     /////////////
                     var spotifyApi = new SpotifyWebApi();
                     spotifyApi.setAccessToken(access_token);
-                    spotifyApi.searchTracks(trackName).then(
+                    spotifyApi.searchTracks('Redbone').then(
                         function(data) {
                             console.log(data);
                         },

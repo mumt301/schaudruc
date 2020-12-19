@@ -43,11 +43,10 @@
                     console.log(artistName);
                     let trackName = params.get('trackName');
                     console.log(trackName);
-                }
-                    /////////////
+
                     var spotifyApi = new SpotifyWebApi();
                     spotifyApi.setAccessToken(access_token);
-                    spotifyApi.searchTracks('Redbone').then(
+                    spotifyApi.searchTracks(trackName).then(
                         function(data) {
                             console.log(data);
                         },
@@ -55,10 +54,12 @@
                             console.log(err);
                         }
                     );
-                        //////////////
                 }
-                
-                
+                    /////////////
+                    
+                    //////////////
+
+                }    
                 });
             }
 
@@ -80,11 +81,7 @@
                 }
                 console.log(xyz);
                 xyz.send('grant_type=client_credentials');
-                */
-
                 
-            
-
             function queryArtistAndTrack() {
                 let params = (new URL(document.location)).searchParams;
                 if (params.has('artistName') && params.has('trackName')) {
@@ -97,7 +94,6 @@
                     httpGet(queryURL);
                 }
             }
-
             function httpGet(theURL, cbFunction) {
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.open('GET', theURL);
@@ -108,6 +104,8 @@
                 }
             }
         }
+        */
+
         runJavaScript();
         </script>   
     </body>

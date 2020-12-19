@@ -34,10 +34,11 @@
                 },
                 success: function(result) {
                 console.log(result.access_token);
+                var access_token = result.access_token;
                 // handle result...
                 /////////////
                 var spotifyApi = new SpotifyWebApi();
-                spotifyApi.setAccessToken();
+                spotifyApi.setAccessToken(access_token);
                 var track = 'Redbone';
                 spotifyApi.searchTracks(track).then(
                     function(data) {

@@ -49,7 +49,7 @@
                     spotifyApi.searchTracks(trackName).then(
                         function(data) {
                             console.log(data);
-                            let trackResult = retrievedData.getElementsByTagName('track');
+                            let trackResult = data.getElementsByTagName('track');
                             console.log(trackResult);
                         },
                         function(err) {

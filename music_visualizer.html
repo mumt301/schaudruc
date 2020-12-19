@@ -57,7 +57,7 @@
                                     var trackId = data.tracks.items[i].id;
                                     console.log(trackId);
 
-                                    Constr.prototype.getAudioAnalysisForTrack = function (trackId, callback) {
+                                    spotifyApi.getAudioAnalysisForTrack = function (trackId, callback) {
                                         var requestData = {};
                                         requestData.url = 'https://api.spotify.com/v1' + '/audio-analysis/' + trackId;
                                         return _checkParamsAndPerformRequest(requestData, {}, callback);

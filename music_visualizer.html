@@ -50,8 +50,10 @@
                         function(data) {
                             console.log(data);
                             for (var i = 0; i < 21; i++) {
-                                let resultArtist = data.tracks.items[i];
+                                let resultTrack = data.tracks.items[i];
                                 console.log(resultArtist)
+                                let resultArtist = resultTrack.album.artists.name;
+                                console.log(resultArtist);
                             }
                             /*
                             let trackResult = data.tracks.items[0];

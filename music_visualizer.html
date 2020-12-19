@@ -49,8 +49,8 @@
                     spotifyApi.searchTracks(trackName).then(
                         function(data) {
                             console.log(data);
-                            for (var i = 0; i < 21; i++) {
-                                let resultTrack = data.tracks.items[0].artists[0].name;
+                            for (var i = 0; i < 20; i++) {
+                                let resultTrack = data.tracks.items[i].artists[0].name;
                                 console.log(resultTrack);
                             }
                             /*

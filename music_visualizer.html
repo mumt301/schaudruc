@@ -22,13 +22,11 @@
 
         <script type='text/JavaScript'>
             function runJavaScript() {
-                const form = document.getElementById('myForm');
-                form.addEventListener("submit", function(event) {
-                    event.preventDefault();
-                } );
+                
 
                 var spotifyApi = new SpotifyWebApi();
-                spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
+                //spotifyApi.setAccessToken('BQADf0ROVplyb0wgs0R2rvYout6SkNIkiCsTaEU8FSNkuT7AbZryw2bLrDuX04DPlHQgDNtgn7lXhCULW6hNZtCT3-RTOxnuo4jmy0oEnRUnX5dB21NMupbPdl5Gmj84fZyQjMlWXfv-FQ');
+                var track = 'Redbone';
                 spotifyApi.searchTracks(track).then(
                     function(data) {
                         console.log(data);
@@ -62,6 +60,7 @@
                 }
             }
         }
+        runJavaScript();
         </script>   
     </body>
 </html>

@@ -51,7 +51,9 @@
                             console.log(data);
                             for (var i = 0; i < 20; i++) {
                                 let resultTrack = data.tracks.items[i].artists[0].name;
-                                console.log(resultTrack);
+                                if (resultTrack.has('artistName')) {
+                                    console.log(resultTrack);
+                                }
                             }
                             /*
                             let trackResult = data.tracks.items[0];

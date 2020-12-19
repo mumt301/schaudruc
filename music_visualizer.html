@@ -43,22 +43,21 @@
                     console.log(artistName);
                     let trackName = params.get('trackName');
                     console.log(trackName);
-
+                    /////////////       
                     var spotifyApi = new SpotifyWebApi();
                     spotifyApi.setAccessToken(access_token);
                     spotifyApi.searchTracks(trackName).then(
                         function(data) {
                             console.log(data);
+                            let trackResult = retrievedData.getElementsByTagName('track');
+                            console.log(trackResult);
                         },
                         function(err) {
                             console.log(err);
                         }
                     );
-                }
                     /////////////
-                    
-                    //////////////
-
+                }
                 }    
                 });
             }

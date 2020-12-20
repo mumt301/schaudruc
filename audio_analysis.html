@@ -65,8 +65,9 @@
                                             var flatness = [];
                                             var strength = [];
 
-                                            var segments_length = data.segments;
-                                            console.log(segments_length.length);
+                                            var segments = data.segments;
+                                            var segments_length = segments.length;
+                                            console.log(segments_length);
 
                                             for (var i = 0; i < 5000; i++) {
                                                 var timbre_segment = data.segments[i].timbre[0];

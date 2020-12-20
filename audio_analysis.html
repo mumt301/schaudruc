@@ -70,6 +70,9 @@
                                                 loudness.push(timbre_segment);
                                             }
                                         },
+                                        function (err) {
+                                            console.error(err);
+                                        }
                                         }
                                     );
                                     break 

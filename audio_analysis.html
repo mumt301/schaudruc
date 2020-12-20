@@ -110,7 +110,6 @@
                                             var keys = ['loudness'];
 
                                             var x = d3.scaleLinear()
-                                                console.log(d.segments[i])
                                                 .domain(d3.extent(loudness, function(d) { return d.segments[i-1]; }))
                                                 .range([ 0, width ]);
                                             svg.append("g")

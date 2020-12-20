@@ -64,9 +64,10 @@
                                             var brightness = [];
                                             var flatness = [];
                                             var strength = [];
+                                            console.log(data.segments[0].timbre[0]);
                                             for (var i = 0; i < 5000; i++) {
                                                 for (var x = 0; x < 4; x++) {
-                                                    var timbre_segment = data.segments[i].pitches[x];
+                                                    var timbre_segment = data.segments[i].timbre[x];
                                                     if (x == 0) {
                                                         loudness.push(timbre_segment);
                                                     }

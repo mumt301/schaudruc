@@ -70,27 +70,17 @@
                                                 loudness.push(timbre_segment);
                                             }
                                         }
-                                },
-                                        function(err) {
-                                            console.error(err);
-                                        }
                                     );
+                                },  
                                     break 
                             }
                         }
-                            /*
-                            let trackResult = data.tracks.items[0];
-                            console.log(trackResult);
-                            */
-                },
-                        function(err) {
-                            console.log(err);
-                        }
                     );
-                    /////////////
                 }
-                }    
-            }   );
+                },
+                }
+                );
+            }
 
                 /*
                 var authUrl = 'https://accounts.spotify.com/api/token';

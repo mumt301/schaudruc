@@ -12,7 +12,7 @@
   box-sizing: border-box;
 }
 
-h1 {
+body {
   font-family: 'Bungee Shade', cursive;//'Kanit', sans-serif;
   font-size: var(--f);
   

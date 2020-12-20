@@ -68,18 +68,17 @@
                                             for (var i = 0; i < 5000; i++) {
                                                     var timbre_segment = data.segments[i].timbre[0];
                                                     loudness.push(timbre_segment);
-                                                }
                                             }
-                                            console.log(loudness);
-
-                                        },
+                                        }
+                                        console.log(loudness);
+                                },
                                         function (err) {
                                             console.error(err);
                                         }
                                     );
                                     break 
-                                }
                             }
+                        }
                             /*
                             let trackResult = data.tracks.items[0];
                             console.log(trackResult);

@@ -100,17 +100,17 @@
                                                 height = 400 - margin.top - margin.bottom;
 
                                             var svg = d3.select("#my_dataviz")
-                                                .append("svg").data(loudness)
+                                                .append("svg")
                                                     .attr("width", width + margin.left + margin.right)
                                                     .attr("height", height + margin.top + margin.bottom)
-                                                .append("g").data(loudness)
+                                                .append("g")
                                                     .attr("transform",
                                                           "translate(" + margin.left + "," + margin.top + ")");
 
                                             var keys = ['loudness'];
 
                                             var x = d3.scaleLinear()
-                                                .domain(d3.extent(data, function(d) { return d.year; }))
+                                                .domain(d3.extent(loudness, function(d) { return d.year; }))
                                                 .range([ 0, width ]);
                                             svg.append("g")
                                                 .attr("transform", "translate(0," + height + ")")
@@ -129,7 +129,7 @@
                                             var stackedData = d3.stack()
                                                 .offset(d3.stackOffsetSilhouette)
                                                 .keys(keys)
-                                                (data)
+                                                (loudness)
                                             svg
                                                 .selectAll("mylayers")
                                                 .data(stackedData)
@@ -137,7 +137,7 @@
                                                 .append("path")
                                                     .style("fill", function(d) { return color(d.key); })
                                                     .attr("d", d3.area()
-                                                        .x(function(d, i) { return x(d.data.year); })
+                                                        .x(function(d, i) { return x(d.loudness.year); })
                                                         .y0(function(d) { return y(d[0]); })
                                                         .y1(function(d) { return y(d[1]); })
                                                     )

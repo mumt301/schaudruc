@@ -50,9 +50,8 @@
                     spotifyApi.searchTracks(trackName).then(
                         function(data) {
                             console.log(data);
-                            for (var i = 0; i < 20; i++) {
+                            for (var i = 0; i < 100; i++) {
                                 var resultArtist = data.tracks.items[i].artists[0].name;
-                                console.log(resultArtist);
                                 if (resultArtist == artistName) { 
                                     console.log(resultArtist);
                                     var trackId = data.tracks.items[i].id;

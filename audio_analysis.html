@@ -100,14 +100,14 @@
                                                 height = 400 - margin.top - margin.bottom;
 
                                             var svg = d3.select("#my_dataviz")
-                                                .append("svg")
+                                                .append("svg").data(loudness)
                                                     .attr("width", width + margin.left + margin.right)
                                                     .attr("height", height + margin.top + margin.bottom)
-                                                .append("g").data(loudness)
+                                                .append("g")
                                                     .attr("transform",
                                                           "translate(" + margin.left + "," + margin.top + ")");
 
-                                            var keys = ['loudness', 'brightness', 'flatness', 'strength'];
+                                            var keys = ['loudness'];
 
                                             var x = d3.scaleLinear()
                                                 .domain(d3.extent(data, function(d) { return d.year; }))

@@ -12,7 +12,7 @@
   box-sizing: border-box;
 }
 
-body {
+h1 {
   font-family: 'Bungee Shade', cursive;//'Kanit', sans-serif;
   font-size: var(--f);
   
@@ -23,7 +23,7 @@ body {
   overflow: hidden;
 }
 
-p {
+h1 {
   flex: 1;
   line-height: .75;
   margin: auto;

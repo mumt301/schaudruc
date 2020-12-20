@@ -129,7 +129,7 @@
                                             var stackedData = d3.stack()
                                                 .offset(d3.stackOffsetSilhouette)
                                                 .keys(keys)
-                                                (data)
+                                                (loudness)
                                             svg
                                                 .selectAll("mylayers")
                                                 .data(stackedData)

@@ -69,19 +69,19 @@
                                             var segments_length = segments.length;
                                             console.log(segments_length);
 
-                                            for (var i = 0; i < 5000; i++) {
+                                            for (var i = 0; i < segments_length; i++) {
                                                 var timbre_segment = data.segments[i].timbre[0];
                                                 loudness.push(timbre_segment);
                                             }
-                                            for (var i = 0; i < 5000; i++) {
+                                            for (var i = 0; i < segments_length; i++) {
                                                 var timbre_segment = data.segments[i].timbre[1];
                                                 brightness.push(timbre_segment);
                                             }
-                                            for (var i = 0; i < 5000; i++) {
+                                            for (var i = 0; i < segments_length; i++) {
                                                 var timbre_segment = data.segments[i].timbre[2];
                                                 flatness.push(timbre_segment);
                                             }
-                                            for (var i = 0; i < 5000; i++) {
+                                            for (var i = 0; i < segments_length; i++) {
                                                 var timbre_segment = data.segments[i].timbre[3];
                                                 strength.push(timbre_segment);
                                             }

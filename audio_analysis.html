@@ -60,10 +60,27 @@
                                     spotifyApi.getAudioAnalysisForTrack(trackId).then(
                                         function(data) {
                                             console.log(data);
-                                            for (var i = 0; i < 1000; i++) {
-                                                var resultBeats = data.beats[i];
-
+                                            var loudness = [];
+                                            var brightness = [];
+                                            var flatness = [];
+                                            var strength = [];
+                                            for (var i = 0; var x = 0; i < 5000; x < 4; i++; x++) {
+                                                var timbre_segment = data.segments[i].timbre[x];
+                                                if (x == 0) {
+                                                    loudness.push(timbre_segment);
+                                                }
+                                                if (x == 1) {
+                                                    brightness.push(timbre_segment);
+                                                }
+                                                if (x == 2) {
+                                                    flatness.push(timbre_segment);
+                                                }
+                                                if (x == 3) {
+                                                    strength.push(timbre_segment);
+                                                }
                                             }
+                                            console.log(loudness);
+
                                         },
                                         function (err) {
                                             console.error(err);

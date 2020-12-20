@@ -137,7 +137,7 @@
                                                 .append("path")
                                                     .style("fill", function(d) { return color(d.key); })
                                                     .attr("d", d3.area()
-                                                        .x(function(d, i) { return x(d.loudness.year); })
+                                                        .x(function(d, i) { return x(d.segments_length); })
                                                         .y0(function(d) { return y(d[0]); })
                                                         .y1(function(d) { return y(d[1]); })
                                                     )

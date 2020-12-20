@@ -23,7 +23,7 @@ body {
   overflow: hidden;
 }
 
-h1 {
+p {
   flex: 1;
   line-height: .75;
   margin: auto;

@@ -66,11 +66,10 @@
                                             var strength = [];
                                             console.log(data.segments[0].timbre[0]);
                                             for (var i = 0; i < 5000; i++) {
-                                                    var timbre_segment = data.segments[i].timbre[0];
-                                                    loudness.push(timbre_segment);
+                                                var timbre_segment = data.segments[i].timbre[0];
+                                                loudness.push(timbre_segment);
                                             }
                                         }
-                                        console.log(loudness);
                                 },
                                         function (err) {
                                             console.error(err);

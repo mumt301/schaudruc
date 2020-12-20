@@ -68,7 +68,18 @@
                                             for (var i = 0; i < 5000; i++) {
                                                 var timbre_segment = data.segments[i].timbre[0];
                                                 loudness.push(timbre_segment);
-                                                console.log(loudness);
+                                            }
+                                            for (var i = 0; i < 5000; i++) {
+                                                var timbre_segment = data.segments[i].timbre[1];
+                                                brightness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < 5000; i++) {
+                                                var timbre_segment = data.segments[i].timbre[2];
+                                                flatness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < 5000; i++) {
+                                                var timbre_segment = data.segments[i].timbre[3];
+                                                strength.push(timbre_segment);
                                             }
                                         }
                                     );

@@ -90,7 +90,8 @@
                                             console.log(brightness);
                                             console.log(flatness);
                                             console.log(strength);
-
+                                            
+                                            convertToCSV(loudness);
                                         }
                                     );
                                 }  
@@ -234,7 +235,7 @@
             var fileTitle = 'orders'; // or 'my-unique-title'
 
             // call the exportCSVFile() function to process the JSON and trigger the download
-            exportCSVFile(headers, itemsFormatted, fileTitle);
+            // exportCSVFile(headers, itemsFormatted, fileTitle);
 
         runJavaScript();
         </script>   

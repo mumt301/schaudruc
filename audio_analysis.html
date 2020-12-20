@@ -56,7 +56,6 @@
                                     console.log(resultArtist);
                                     var trackId = data.tracks.items[i].id;
                                     console.log(trackId);
-                                    continue
 
                                     spotifyApi.getAudioAnalysisForTrack(trackId).then(
                                         function(data) {
@@ -69,7 +68,7 @@
                                             console.error(err);
                                         }
                                     );
-                                    
+                                    break 
                                 }
                             }
                             /*

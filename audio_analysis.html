@@ -95,10 +95,12 @@
                                             console.log(flatness);
                                             console.log(strength);
 
+                                            // setting dimensions & margins of the graph 
                                             var margin = {top: 20, right: 30, bottom: 30, left: 120},
                                                 width = 600 - margin.left - margin.right,
                                                 height = 400 - margin.top - margin.bottom;
 
+                                            // append the svg (scalable vector graphics) to the body of the page
                                             var svg = d3.select("#my_dataviz")
                                                 .append("svg")
                                                     .attr("width", width + margin.left + margin.right)
@@ -107,22 +109,22 @@
                                                     .attr("transform",
                                                           "translate(" + margin.left + "," + margin.top + ")");
 
-                                            var keys = ['loudness'];
+                                            // list of titles of the 4 datasets 
+                                            var keys = ['loudness', 'brightness', 'flatness', 'strength'];
 
+                                            // add the x axis 
                                             var x = d3.scaleLinear()
                                                 .domain([0, segments_length])
                                                 ///(function(d) {return d;}) gives data set 
+                                                console.log(width)
                                                 .range([ 0, width ]);
                                             svg.append("g")
                                                 .attr("transform", "translate(0," + height + ")")
                                                 .call(d3.axisBottom(x).ticks(5));
 
-                                            var extenty = d3.extent(loudness);   
-                                            console.log(extenty);                                         
+                                            var extenty = d3.extent(loudness);                                           
                                             var ymin = extenty[0];
-                                            console.log(ymin);
                                             var ymax = extenty[1];
-                                            console.log(ymax);
 
                                             var y = d3.scaleLinear()
                                                 .domain([ymin, ymax])                                        

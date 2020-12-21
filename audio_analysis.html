@@ -137,7 +137,8 @@
                                             // colors
                                             var color = d3.scaleOrdinal()
                                                 .domain(keys)
-                                                .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf'])
+                                                console.log(color.domain())
+                                                .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
 
                                             // stack the data
                                             var stackedData = d3.stack()

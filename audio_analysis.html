@@ -144,6 +144,8 @@
                                                 .offset(d3.stackOffsetSilhouette)
                                                 .keys(keys)
                                                 (loudness)
+
+                                            // show the areas 
                                             svg
                                                 .selectAll("mylayers")
                                                 .data(stackedData)
@@ -159,9 +161,9 @@
                                                             // console.log(i)
                                                             return x(i); })
                                                         .y0(function(d) {
-                                                            return y(d.data); })
+                                                            return y(d[0].data); })
                                                         .y1(function(d) {
-                                                            return y(d.data); })
+                                                            return y(d[1].data); })
                                                     )
                                         })
                                     break

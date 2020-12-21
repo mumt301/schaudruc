@@ -157,15 +157,20 @@
                                                         // console.log(color(d.keys))
                                                         return color(d.keys); })
                                                     .attr("d", d3.area()
-                                                        .x(function(d, i) {
+                                                        .x0(function(d) {
+                                                            return x(0);
+                                                        })
+                                                        .x1(function(d, i) {
                                                             // console.log(d.data)
                                                             // console.log(i)
-                                                            return y(d.data); })
-                                                        // .y0(function(d) {
+                                                            return x(i); 
+                                                        })
+                                                        .y0(function(d) {
                                                             // return y(d.data); 
-                                                            // return(0); })
+                                                            return y(0); 
+                                                        })
                                                         .y1(function(d) {
-                                                            return x(i);
+                                                            return y(d.data);
                                                         })
                                                     )
                                         })

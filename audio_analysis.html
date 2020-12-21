@@ -153,7 +153,7 @@
                                                 .append("path")
                                                     .style("fill", function(d) { 
                                                         // console.log(d[0].data)
-                                                        console.log(color(d.key))
+                                                        console.log(color(d.key[0]))
                                                         return color(d.key[0]); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) {

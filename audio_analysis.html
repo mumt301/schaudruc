@@ -111,7 +111,6 @@
 
                                             var x = d3.scaleLinear()
                                                 .domain(d3.extent(loudness, function(d) {return d;}))
-                                                console.log(d)
                                                 .range([ 0, width ]);
                                             svg.append("g")
                                                 .attr("transform", "translate(0," + height + ")")

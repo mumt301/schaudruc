@@ -151,7 +151,7 @@
                                                 .data(stackedData)
                                                 .enter()
                                                 .append("path")
-                                                    .style("fill", function(d) { return color(d.key); })
+                                                    .style("fill", function(d) { return color(range); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) { return x(d.segments_length); })
                                                         .y0(function(d) { return y(d[0]); })

@@ -113,7 +113,7 @@
                                             var keys = ['loudness', 'brightness', 'flatness', 'strength'];
 
                                             // finding [min, max] of dataset for y-axis
-                                            var extenty = d3.extent(loudness);                                           
+                                            var extenty = d3.extent(strength);                                           
                                             var ymin = extenty[0];
                                             var ymax = extenty[1];
 
@@ -143,7 +143,7 @@
                                             var stackedData = d3.stack()
                                                 .offset(d3.stackOffsetSilhouette)
                                                 .keys(keys)
-                                                (loudness)
+                                                (strength)
 
                                             // show the areas 
                                             svg

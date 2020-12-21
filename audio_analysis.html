@@ -139,6 +139,7 @@
                                                 .domain(keys)
                                                 console.log(color.domain())
                                                 .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
+                                                console.log(color)
 
                                             // stack the data
                                             var stackedData = d3.stack()
@@ -150,7 +151,7 @@
                                                 .data(stackedData)
                                                 .enter()
                                                 .append("path")
-                                                    .style("fill", function(d) { return color(range); })
+                                                    .style("fill", function(d) { return color(d.keys); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) { return x(d.segments_length); })
                                                         .y0(function(d) { return y(d[0]); })

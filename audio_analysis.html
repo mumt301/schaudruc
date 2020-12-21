@@ -156,7 +156,7 @@
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) {
                                                             console.log(d)
-                                                            console.log(i)
+                                                            console.log(i.data)
                                                             return x(d.segments_length); })
                                                         .y0(function(d) {
                                                             return y(d[0].data); })

@@ -150,8 +150,8 @@
                                                 .enter()
                                                 .append("path")
                                                     .style("fill", function(d) { 
-                                                        console.log(d[0])
-                                                        console.log(d[1])
+                                                        console.log(d[0].data)
+                                                        console.log(d[1].data[1])
                                                         return color(d.key); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) { return x(d.segments_length); })

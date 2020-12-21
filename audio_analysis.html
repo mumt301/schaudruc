@@ -136,7 +136,7 @@
 
                                             // colors
                                             var color = d3.scaleOrdinal()
-                                                .domain('brightness')
+                                                .domain('strength')
                                                 // .domain(keys)
                                                 .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
 
@@ -154,18 +154,18 @@
                                                 .append("path")
                                                     .style("fill", function(d) { 
                                                         // console.log(d[0].data)
-                                                        console.log(color(d.keys))
+                                                        // console.log(color(d.keys))
                                                         return color(d.keys); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) {
                                                             // console.log(d.data)
                                                             // console.log(i)
-                                                            return x(i); })
+                                                            return y(d.data); })
                                                         // .y0(function(d) {
                                                             // return y(d.data); 
                                                             // return(0); })
                                                         .y1(function(d) {
-                                                            return y(d.data);
+                                                            return x(i);
                                                         })
                                                     )
                                         })

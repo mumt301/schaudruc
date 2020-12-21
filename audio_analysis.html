@@ -150,11 +150,13 @@
                                                 .enter()
                                                 .append("path")
                                                     .style("fill", function(d) { 
-                                                        console.log(d[0].data)
-                                                        console.log(color(d.key))
+                                                        // console.log(d[0].data)
+                                                        // console.log(color(d.key))
                                                         return color(d.key); })
                                                     .attr("d", d3.area()
-                                                        .x(function(d, i) { return x(d.segments_length); })
+                                                        .x(function(d, i) {
+                                                            console.log(x(d.segments_length))
+                                                            return x(d.segments_length); })
                                                         .y0(function(d) {
                                                             return y(d[0].data); })
                                                         .y1(function(d) {

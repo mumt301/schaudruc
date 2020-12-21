@@ -155,9 +155,9 @@
                                                         return color(d.key); })
                                                     .attr("d", d3.area()
                                                         .x(function(d, i) {
-                                                            console.log(d.data)
-                                                            console.log(i)
-                                                            return x(d.segments_length); })
+                                                            // console.log(d.data)
+                                                            // console.log(i)
+                                                            return x(i); })
                                                         .y0(function(d) {
                                                             return y(d[0].data); })
                                                         .y1(function(d) {

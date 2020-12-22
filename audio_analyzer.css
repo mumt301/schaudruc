@@ -1,0 +1,209 @@
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	background-color: paleturquoise;
+}
+
+.text-box {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	font-size: 5vw;
+	font-weight: 900;
+	background-color: #000;
+	color: paleturquoise;
+	display: block;
+    padding: .5em;
+    margin-top: -30px;
+}
+
+h1:nth-child(2) {
+	position: absolute;
+	background-color: paleturquoise;
+	color: #000;
+	clip-path: inset(-1% -1% 50% -1%); // Added the negative values to prevent icky "bleed" in Chrome
+}
+
+#paragraph {
+    font-size: 2vw;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+#paragraph_pink {
+    font-size: 2vw;
+    color: #ff1988;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+#paragraph_brown {
+    font-size: 2vw;
+    color: #755a5c;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+#paragraph_blue {
+    font-size: 2vw;
+    color: #0040ff;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+#paragraph_yellow {
+    font-size: 2vw;
+    color: #e5ff52;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+// Codepen spesific styling - only to center the elements in the pen preview and viewport
+.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+// End Codepen spesific styling
+
+@import url('https://fonts.googleapis.com/css?family=Sarpanch:900');
+
+ {
+  grid-area: text;
+  font-family: 'Sarpanch', sans-serif;
+  font-size: 15vmin;
+  margin: 0;
+  padding: 7px;
+  color: white;
+  text-shadow: 1vmin 1vmin 0 black, -1vmin -1vmin 0 #e5ff52;
+  margin-bottom: -60px;
+  margin-top: -25px;
+}
+
+ {
+    grid-area: text;
+    font-family: 'Sarpanch', sans-serif;
+    font-size: 15vmin;
+    margin: 0;
+    padding: 7px;
+    color: white;
+    text-shadow: 1vmin 1vmin 0 black, -1vmin -1vmin 0 #e5ff52;
+    margin-bottom: -10px;
+  }
+
+#loudness {
+    color: #0040ff;
+
+}
+
+#brightness {
+    color: #e5ff52;
+
+}
+
+#flatness {
+    color: #755a5c;
+
+}
+
+#strength {
+    color: #ff1988;
+
+}
+
+h2 {
+    font-size: 2vw;
+	font-weight: 900;
+	margin-top: -8px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+h3 {
+    font-size: 2vw;
+    margin-bottom: 40px;
+	font-weight: 900;
+	margin-top: -10px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+    }
+}
+
+#myForm {
+    font-size: 20px;
+	font-weight: 900;
+    margin-top: -10px;
+    margin-bottom: 35px;
+	text-align: center;
+	span {
+		display: block;
+		transform: rotate(90deg);
+		margin-top: .25em;
+	}
+}
+
+#button {
+    color: black;
+    font-weight: 900;
+    background-color: #e5ff52;
+    border: none;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 3px 1px;
+}

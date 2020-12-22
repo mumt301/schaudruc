@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <div id="my_dataviz"></div>
+
+        <script type='text/JavaScript'>
+            function addAxis(svgSel, d, xscale, yscale, firstStack){
+                let dates, maxPValues, maxNValues, blankAxis;
+                
+                if(d){
+                    dates = d.map( (d) => d.month );
+                    if(firstStack){
+                    maxPValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d)){ sum += key != "month" ? value : 0; }
+                        return sum;
+                    });
+                    maxNValues = [0,0]; 
+                    }
+                    else {
+                    maxPValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d.fruitSales)){ sum += key != "month" ? (value > 0 ? value : 0): 0; }
+                        return sum;
+                    });
+                    maxPValues.push(0);
+                    
+                    maxNValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d.fruitSales)){ sum += key != "month" ? (value < 0 ? value : 0 ): 0; }
+                        return sum;
+                    });
+                    maxNValues.push(0);
+                    }
+                }
+                else{
+                    dates = [0,0];
+                    blankAxis = true;
+                    maxPValues = [0,0];
+                    maxNValues = [0,0];
+                }
+                
+                if(xscale){
+                    xscale.domain([dates[0], dates[dates.length - 1]]);
+                    // Add xAxis
+                    let xAxis = d3.axisBottom(xscale)
+                    .tickValues(blankAxis ? [] : dates)
+                    .tickFormat(d3.timeFormat("%b"));
+                    svgSel.append("g")
+                    .attr("transform", "translate(0, 275)")
+                    .call(xAxis);
+                }
+                if(yscale){
+                    yDomain = d3.extent(maxPValues.concat(maxNValues));
+                    yscale.domain(yDomain);
+                    // Add yAxis
+                    let yAxis = d3.axisLeft(yscale)
+                    .ticks(8);
+                    svgSel.append("g")
+                    .attr("transform", "translate(49, 0)")
+                    .call(yAxis);
+                }
+            }
+
+            function addLabels(selection, data, area){
+                selection.selectAll(".label")
+                    .data(data)
+                    //.join("text")
+                    .text((d) => d.key)
+                    .attr("transform", 'hi')
+                    .attr("fill", "blaack");
+            }
+
+            function addAreas(selection, data, area, customTransform){ //customTransform not neccesary
+                selection.selectAll(".areas")
+                    .data(data)
+                    .join("path")
+                    .attr("d", area)
+                    .attr("fill", (d) => colorScale(d.key))
+                    .attr("transform" , customTransform);
+            }
+
+            var data = [
+                {month: new Date(2018, 1, 1), apples: 10, bananas: 20, oranges: 15},
+                {month: new Date(2018, 2, 1), apples: 15, bananas: 15, oranges: 15},
+                {month: new Date(2018, 3, 1), apples: 20, bananas: 25, oranges: 15}
+            ];
+
+            var stackGen = d3.stack()
+                .keys(["apples", "bananas", "oranges"]);
+            
+            var stackedSeries = stackGen(data); 
+
+            var xScale = d3.scaleTime().domain([data[0].month, data[2].month]).range([50, 275]);
+            var yScale = d3.scaleLinear().domain([0,60]).range([275, 25]);
+
+            addAxis(d3.select("#demo0"), data, xScale, yScale, true); 
+
+            var colorScale = d3.scaleOrdinal()
+                .domain(["apples", "bananas", "oranges"])
+                .range(["red", "yellow", "orange"]);
+
+            var areaGen = d3.area()
+                .x((d) => xScale(d.data.month))
+                .y0((d) => yScale(d[0]))
+                .y1((d) => yScale(d[1]));
+            
+            d3.select("#demo0")
+                .selectAll(".areas")
+                .data(stackedSeries)
+                //.join("path")
+                .attr("d", areaGen)
+                .attr("fill", (d) => colorScale(d.key));
+            
+            addLabels(d3.select("#demo0"), stackedSeries, areaGen);
+        </script>
+        <svg id="demo0" width= "300" height="300"></svg>
+    </body>
+</html>

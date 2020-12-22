@@ -1,0 +1,193 @@
+<html>
+    <head>
+        <title>Spotify API Call: Final Version</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="audio_analyzer.css">
+    </head>
+    <body style="background-color:paleturquoise">
+        <div class="container">
+            <div class="text-box">
+                <h1>REVEAL</h1>
+                <h1>REVEAL</h1>
+            </div>
+                <p id="paragraph">THE          <span id="loudness">LOUDNESS          </span><span id="brightness">BRIGHTNESS          </span id="brightness"><span id="flatness">FLATNESS          </span><span id="paragrph">&          </span><span id="strength">STRENGTH OF ATTACK          </span><span>OF ANY SONG</span></p>
+        </div>
+
+        <h2>Simply type the name of song and its artist!</h2>
+        <h3>For optimal results, please be case-sensitive with your searches.</h3>
+
+        <form onsubmit="runJavaScript()" id="myForm">
+            <label for="track" id="track_input">Track name:</label>
+            <input type="text" name="trackName" id="track">
+            <label for="artist" id="artist_input">Artist name:</label>
+            <input type="text" name="artistName" id="artist">
+            <input type="submit" id="button" value="REVEAL">
+        </form>
+
+        <script src="spotify.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+        <script src="https://d3js.org/d3.v4.js"></script>
+
+        <div id="my_dataviz"></div>
+
+        <script type='text/JavaScript'>
+            function runJavaScript() {
+                $.ajax(
+                {
+                method: "POST",
+                url: "https://accounts.spotify.com/api/token",
+                data: {
+                "grant_type":"client_credentials",
+                //  "code":          code,
+                //  "redirect_uri":  myurl,
+                "client_secret":"6902861723d7473eb55d9dd341c575da",
+                "client_id":"d30523ae4669444eb8812a8979bfb04c",
+                },
+                success: function(result) {
+                // console.log(result.access_token);
+                var access_token = result.access_token;
+                // handle result...
+
+                var params = (new URL(document.location)).searchParams;
+                if (params.has('artistName') && params.has('trackName')) {
+                    var artistName = params.get('artistName');
+                    // console.log(artistName);
+                    var trackName = params.get('trackName');
+                    // console.log(trackName);
+                           
+                    var spotifyApi = new SpotifyWebApi();
+                    spotifyApi.setAccessToken(access_token);
+                    spotifyApi.searchTracks(trackName).then(
+                        function(data) {
+                            // console.log(data);
+                            for (var i = 0; i < 100; i++) {
+                                var resultArtist = data.tracks.items[i].artists[0].name;
+                                if (resultArtist == artistName) { 
+                                    // console.log(resultArtist);
+                                    var trackId = data.tracks.items[i].id;
+                                    // console.log(trackId);
+
+                                    spotifyApi.getAudioAnalysisForTrack(trackId).then(
+                                        function(data) {
+                                            console.log(data);
+                                            var loudness = [];
+                                            var brightness = [];
+                                            var flatness = [];
+                                            var strength = [];
+
+                                            var segments = data.segments;
+                                            var segments_length = segments.length;
+                                            console.log(segments_length);
+
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[0];
+                                                loudness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[1];
+                                                brightness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[2];
+                                                flatness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[3];
+                                                strength.push(timbre_segment);
+                                            }
+
+                                            // Comiling data into array
+                                            var data = [];
+                                            for (var i = 0; i < segments_length; i++) {
+                                                data.push(
+                                                    {'position':i, 'loudness':loudness[i], 'brightness':brightness[i], 
+                                                    'flatness':flatness[i], 'strength':strength[i]}
+                                                );
+                                            }
+                                            console.log(data);
+
+                                            // List of groups 
+                                            var keys = ['loudness', 'brightness', 'flatness', 'strength'];
+
+                                            // Set the dimensions and margins of the graph
+                                            var margin = {top: 20, right: 20, bottom: 60, left: 120},
+                                                width = 1200 - margin.left - margin.right,
+                                                height = 430 - margin.top - margin.bottom;
+
+                                            // Append the svg object to the body of the page
+                                            var svg = d3.select("#my_dataviz")
+                                                .append("svg")
+                                                    .attr("width", width + margin.left + margin.right)
+                                                    .attr("height", height + margin.top + margin.bottom)
+                                                .append("g")
+                                                    .attr("transform",
+                                                        "translate(" + margin.left + "," + margin.top + ")");
+
+                                            // Add X axis
+                                            var x = d3.scaleLinear()
+                                                .domain([0, segments_length])
+                                                .range([ 0, width ]);
+                                            svg.append("g")
+                                                .attr("transform", "translate(0," + height + ")")
+                                                .call(d3.axisBottom(x).ticks(5));
+
+                                            // Add Y axis
+                                            var y = d3.scaleLinear()
+                                                .domain([-250, 250])
+                                                .range([ height, 0 ]);
+                                            svg.append("g")
+                                                .call(d3.axisLeft(y));
+
+                                            // Color palette
+                                            var color = d3.scaleOrdinal()
+                                                .domain(keys)
+                                                .range(['#0040ff','#e5ff52','#755a5c','#ff1988']);
+
+                                            // Stack the data
+                                            var stackedData = d3.stack()
+                                                .offset(d3.stackOffsetSilhouette)
+                                                .keys(keys)
+                                                (data)
+                                            console.log(stackedData);
+
+                                            // Show the areas
+                                            svg
+                                                .selectAll("mylayers")
+                                                .data(stackedData)
+                                                .enter()
+                                                .append("path")
+                                                .style("fill", function(d) { 
+                                                    return color(d.key); })
+                                                .attr("d", d3.area()
+                                                    .x(function(d, i) { 
+                                                        // console.log('x: ' + x(d.data.position))
+                                                        return x(d.data.position); 
+                                                    })
+                                                    .y0(function(d) { 
+                                                        // console.log('yd0: ' + y(d[0]))
+                                                        return y(d[0]); 
+                                                    })
+                                                    .y1(function(d) { 
+                                                        // console.log('yd1: ' + y(d[1]))
+                                                        return y(d[1]); 
+                                                    })
+                                                )
+                                            
+                                        })
+                                    break
+                                }
+                            }   
+                        }
+                    );
+                }
+                }
+                },
+                );
+            }
+        runJavaScript();
+        </script> 
+        <br>
+    </body>
+</html>

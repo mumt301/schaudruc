@@ -1,0 +1,292 @@
+<html>
+    <head>
+        <title>Spotify API Call</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
+    </head>
+    <body>
+        <h1>Type the name of a track you love and its artist!</h1>
+        <h3>For optimal results, please be case-sensitive with your searches.</h3>
+
+        <form onsubmit="runJavaScript()" id="myForm">
+            <label for="track">Track name:</label>
+            <input type="text" name="trackName" id="track">
+            <br>
+            <label for="artist">Artist name:</label>
+            <input type="text" name="artistName" id="artist">
+            <input type="submit">
+        </form>
+
+        <script src="spotify.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+        <script src="https://d3js.org/d3.v4.js"></script>
+
+        <div id="my_dataviz"></div>
+
+        <script type='text/JavaScript'>
+            function addAxis(svgSel, d, xscale, yscale, firstStack){
+                let dates, maxPValues, maxNValues, blankAxis;
+                
+                if(d){
+                    dates = d.map( (d) => d.month );
+                    if(firstStack){
+                    maxPValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d)){ sum += key != "month" ? value : 0; }
+                        return sum;
+                    });
+                    maxNValues = [0,0]; 
+                    }
+                    else {
+                    maxPValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d.fruitSales)){ sum += key != "month" ? (value > 0 ? value : 0): 0; }
+                        return sum;
+                    });
+                    maxPValues.push(0);
+                    
+                    maxNValues = d.map( (d) => {
+                        let sum = 0;
+                        for(let [key, value] of Object.entries(d.fruitSales)){ sum += key != "month" ? (value < 0 ? value : 0 ): 0; }
+                        return sum;
+                    });
+                    maxNValues.push(0);
+                    }
+                }
+                else{
+                    dates = [0,0];
+                    blankAxis = true;
+                    maxPValues = [0,0];
+                    maxNValues = [0,0];
+                }
+  
+                if(xscale){
+                    xscale.domain([dates[0], dates[dates.length - 1]]);
+                    // Add xAxis
+                    let xAxis = d3.axisBottom(xscale)
+                    .tickValues(blankAxis ? [] : dates)
+                    .tickFormat(d3.timeFormat("%b"));
+                    svgSel.append("g")
+                    .attr("transform", "translate(0, 275)")
+                    .call(xAxis);
+                }
+                if(yscale){
+                    yDomain = d3.extent(maxPValues.concat(maxNValues));
+                    yscale.domain(yDomain);
+                    // Add yAxis
+                    let yAxis = d3.axisLeft(yscale)
+                    .ticks(8);
+                    svgSel.append("g")
+                    .attr("transform", "translate(49, 0)")
+                    .call(yAxis);
+                }
+            }
+
+            function addLabels(selection, data, area){
+                selection.selectAll(".label")
+                    .data(data)
+                    .join("text")
+                    .text((d) => d.key)
+                    .attr("transform", d3.areaLabel(area).minHeight(9.5))
+                    .attr("fill", "blaack");
+            }
+
+            function runJavaScript() {
+                $.ajax(
+                {
+                method: "POST",
+                url: "https://accounts.spotify.com/api/token",
+                data: {
+                "grant_type":"client_credentials",
+                //  "code":          code,
+                //  "redirect_uri":  myurl,
+                "client_secret":"6902861723d7473eb55d9dd341c575da",
+                "client_id":"d30523ae4669444eb8812a8979bfb04c",
+                },
+                success: function(result) {
+                console.log(result.access_token);
+                var access_token = result.access_token;
+                // handle result...
+
+                var params = (new URL(document.location)).searchParams;
+                if (params.has('artistName') && params.has('trackName')) {
+                    var artistName = params.get('artistName');
+                    console.log(artistName);
+                    var trackName = params.get('trackName');
+                    console.log(trackName);
+                           
+                    var spotifyApi = new SpotifyWebApi();
+                    spotifyApi.setAccessToken(access_token);
+                    spotifyApi.searchTracks(trackName).then(
+                        function(data) {
+                            // console.log(data);
+                            for (var i = 0; i < 100; i++) {
+                                var resultArtist = data.tracks.items[i].artists[0].name;
+                                if (resultArtist == artistName) { 
+                                    console.log(resultArtist);
+                                    var trackId = data.tracks.items[i].id;
+                                    console.log(trackId);
+
+                                    spotifyApi.getAudioAnalysisForTrack(trackId).then(
+                                        function(data) {
+                                            // data = audio analysis
+                                            console.log(data);
+                                            var loudness = [];
+                                            var brightness = [];
+                                            var flatness = [];
+                                            var strength = [];
+
+                                            var segments = data.segments;
+                                            var segments_length = segments.length;
+                                            // segments_length = # data pts on x-axis 
+                                            console.log(segments_length); 
+
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[0];
+                                                loudness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[1];
+                                                brightness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[2];
+                                                flatness.push(timbre_segment);
+                                            }
+                                            for (var i = 0; i < segments_length; i++) {
+                                                var timbre_segment = data.segments[i].timbre[3];
+                                                strength.push(timbre_segment);
+                                            }
+                                            // 4 datasets
+                                            // console.log(loudness);
+                                            // console.log(brightness);
+                                            // console.log(flatness);
+                                            // console.log(strength);
+
+                                            // compiling datasets into an array
+                                            var myArray = [];
+                                            for (var i = 0; i < segments_length; i++) {
+                                                myArray.push(
+                                                    {'position':i, 'loudness':loudness[i], 'brightness':brightness[i], 
+                                                    'flatness':flatness[i], 'strength':strength[i]}
+                                                );
+                                            }
+                                            console.log(myArray);
+
+                                            // list of titles of the 4 datasets 
+                                            var keys = ['loudness', 'brightness', 'flatness', 'strength'];
+
+                                            // stack the data
+                                            var stackGen = d3.stack()
+                                                // .offset(d3.stackOffsetSilhouette)
+                                                .keys(keys);
+                                                // .value((obj, key) => obj.myArray[0].key)
+                                                // .order(d3.stackOrderNone)
+                                                // .offset(d3.stackOffsetNone);
+                                            var stackedSeries = stackGen(myArray);
+                                            console.log(stackedSeries);
+
+                                            // setting dimensions & margins of the graph 
+                                            var margin = {top: 20, right: 20, bottom: 60, left: 120},
+                                                width = 1200 - margin.left - margin.right,
+                                                height = 430 - margin.top - margin.bottom;
+
+                                            // add the x axis 
+                                            var xScale = d3.scaleLinear()
+                                                .domain([0, segments_length])
+                                                // maybe (segments_length - 1)
+                                                // (function(d) {return d;}) gives data set 
+                                                .range([0, width]);
+                                            //svg.append("g")
+                                                //.attr("transform", "translate(0," + height + ")")
+                                                //.call(d3.axisBottom(x).ticks(5));
+
+                                            // add the y axis
+                                            var yScale = d3.scaleLinear()
+                                                .domain([-300, 300])                                        
+                                                .range([height, 0]);
+                                            //svg.append("g")
+                                                //.call(d3.axisLeft(y));
+
+                                            addAxis(d3.select("#demo0"), myArray, xScale, yScale, true);
+
+                                            // colors
+                                            var colorScale = d3.scaleOrdinal()
+                                                .domain(keys)
+                                                .range(['#e41a1c','#377eb8','#4daf4a','#984ea3']);
+                                            
+                                            // assigning areas 
+                                            var areaGen = d3.area()
+                                                .x(function(d) {
+                                                    return xScale(d.myArray.position)
+                                                })
+                                                .y0(function(d) {
+                                                    return yScale(d[0])
+                                                })
+                                                .y1(function(d) {
+                                                    return yScale(d[1])
+                                                });
+
+                                            d3.select("#demo0")
+                                                .selectAll(".areas")
+                                                .data(stackedSeries)
+                                                .join("path")
+                                                .attr("d", areaGen)
+                                                .attr("fill", (d) => colorScale(d.key));
+                                            
+                                            addLabels(d3.select("#demo0"), stackedSeries, areaGen);
+
+                                            /*
+                                            // append the svg (scalable vector graphics) to the body of the page
+                                            var svg = d3.select("#my_dataviz")
+                                                .append("svg")
+                                                    .attr("width", width + margin.left + margin.right)
+                                                    .attr("height", height + margin.top + margin.bottom)
+                                                .append("g")
+                                                    .attr("transform",
+                                                          "translate(" + margin.left + "," + margin.top + ")");
+
+                                            // finding [min, max] of dataset for y-axis
+                                            // not being used 
+                                            var extenty = d3.extent(myArray);                                           
+                                            var ymin = extenty[0];
+                                            var ymax = extenty[1];
+                                
+                                            // show the areas 
+                                            svg
+                                                .selectAll("mylayers")
+                                                .data(stackedSeries)
+                                                .enter()
+                                                .append("path")
+                                                .style("fill", function(d) {
+                                                    return color(d.keys); 
+                                                })
+                                                .attr("d", d3.area()
+                                                .x(function(d, i) { return x(d.data.position); })
+                                                .y0(function(d) { 
+                                                    // console.log(d[0])
+                                                    return y(d[0]); })
+                                                .y1(function(d) { 
+                                                    // console.log('d1: '+d[1])
+                                                    return y(d[1]); })
+                                                )
+                                                */
+                                        })
+                                    break
+                                }
+                            }   
+                        }
+                    );
+                }
+                }
+                },
+                );
+            }
+
+        runJavaScript();
+        </script>  
+        <svg id="demo0" width= "300" height="300"></svg>
+    </body>
+</html>

@@ -136,15 +136,14 @@
 
                                             // colors
                                             var color = d3.scaleOrdinal()
-                                                .domain('strength')
-                                                // .domain(keys)
+                                                .domain(keys)
                                                 .range(['#e41a1c','#377eb8','#4daf4a','#984ea3'])
 
                                             // stack the data
                                             var stackedData = d3.stack()
                                                 .offset(d3.stackOffsetSilhouette)
                                                 .keys(keys)
-                                                (strength)
+                                                (data)
 
                                             // show the areas 
                                             svg
@@ -158,7 +157,7 @@
                                                         return color(d.keys); })
                                                     .attr("d", d3.area()
                                                         .x0(function(d) {
-                                                            return x(0);
+                                                            return x(i);
                                                         })
                                                         .x1(function(d, i) {
                                                             // console.log(d.data)
@@ -321,5 +320,13 @@
 
         runJavaScript();
         </script>   
+                <p id="paragraph">This website reveals a visualization of the timbre of any song...</p>
+                <p id="paragraph"></p>
+                <p id="paragraph">Timbre can be defined as the character or quality of a musical sound or voice.</p>
+                <p id="paragraph">This visualization compares four characteristics of timbre:</p>
+                <p id="paragraph_blue">LOUDNESS</p>
+                <p id="paragraph_yellow">BRIGHTNESS</p>
+                <p id="paragraph_brown">FLATNESS</p>
+                <p id="paragraph_pink">STRENGTH OF ATTACK</p>
     </body>
 </html>

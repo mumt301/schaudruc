@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <div id="my_dataviz"></div>
+
+        <script type='text/JavaScript'>
+
+            var data = [
+                {position: 0, loudness: 400, brightness: 200, flatness: 96,  strength: 80},
+                {position: 1, loudness: 300, brightness: 500, flatness: 96,  strength: 40},
+                {position: 2, loudness: 200, brightness: 200, flatness: 96,  strength: 70},
+                {position: 3, loudness: 100, brightness: 700, flatness: 96,  strength: 200},
+                {position: 4, loudness: 150, brightness: 80, flatness: 96,  strength: 50},
+                {position: 5, loudness: 60, brightness: 30, flatness: 96,  strength: 90},
+                {position: 6, loudness: 90, brightness: 800, flatness: 96,  strength: 100}
+            ];
+
+            console.log(data);
+
+            // List of groups 
+            var keys = ['loudness', 'brightness', 'flatness', 'strength'];
+                        
+            // set the dimensions and margins of the graph
+            var margin = {top: 20, right: 30, bottom: 30, left: 60},
+                width = 460 - margin.left - margin.right,
+                height = 400 - margin.top - margin.bottom;
+
+            // append the svg object to the body of the page
+            var svg = d3.select("#my_dataviz")
+                .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                    .attr("transform",
+                        "translate(" + margin.left + "," + margin.top + ")");
+
+            // Add X axis
+            var x = d3.scaleLinear()
+                .domain([0, 10])
+                .range([ 0, width ]);
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(5));
+
+            // Add Y axis
+            var y = d3.scaleLinear()
+                .domain([-1000, 1000])
+                .range([ height, 0 ]);
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            // color palette
+            var color = d3.scaleOrdinal()
+                .domain(keys)
+                .range(['#e41a1c','#377eb8','#4daf4a','#984ea3']);
+
+            //stack the data?
+            var stackedData = d3.stack()
+                .offset(d3.stackOffsetSilhouette)
+                .keys(keys)
+                (data)
+
+            console.log(stackedData);
+
+            // Show the areas
+            svg
+                .selectAll("mylayers")
+                .data(stackedData)
+                .enter()
+                .append("path")
+                .style("fill", function(d) { return color(d.key); })
+                .attr("d", d3.area()
+                    .x(function(d, i) { 
+                        console.log('x: ' + x(d.data.position))
+                        return x(d.data.position); 
+                    })
+                    .y0(function(d) { 
+                        console.log('yd0: ' + y(d[0]))
+                        return y(d[0]); 
+                    })
+                    .y1(function(d) { 
+                        console.log('yd1: ' + y(d[1]))
+                        return y(d[1]); 
+                    })
+                )
+        </script>
+    </body>
+</html>

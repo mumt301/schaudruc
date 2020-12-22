@@ -1,0 +1,90 @@
+<script>
+    var data = [
+        {month: new Date(2018, 0, 1), fruitSales: {apples: 400, bananas: 200, cherries: 96,  dates: 40, oranges: 250, grapes: 20}},
+        {month: new Date(2018, 1, 1), fruitSales: {apples: 160, bananas: 150, cherries: 96,  dates: 40, oranges: 200, grapes: 25}},
+        {month: new Date(2018, 2, 1), fruitSales: {apples:  64, bananas:  96, cherries: 64,  dates: 40, oranges: 150, grapes: 30}},
+        {month: new Date(2018, 3, 1), fruitSales: {apples:  32, bananas:  48, cherries: 64,  dates: 40, oranges: 100, grapes: 20}},
+        {month: new Date(2018, 4, 1), fruitSales: {apples:  40, bananas: 100, cherries: 64,  dates: 40, oranges: 115, grapes: 45}},
+        {month: new Date(2018, 5, 1), fruitSales: {apples: 100, bananas: 250 , cherries: 86,  dates: 40, oranges: 225, grapes: 50}},
+        {month: new Date(2018, 6, 1), fruitSales: {apples: 150, bananas: 125, cherries: 96,  dates: 40, oranges: 200, grapes: 15}},
+        {month: new Date(2018, 7, 1), fruitSales: {apples: 100, bananas:  75, cherries: 106, dates: 40, oranges: 210, grapes: 10}}
+    ];
+    
+    var xScale = d3.scaleTime().domain([data[0].month, data[data.length - 1].month]).range([50,275]);
+    var yScale = d3.scaleLinear().domain([0,1000]).range([275,25]);
+    var colorScale = d3.scaleOrdinal()
+      .domain(["apples", "bananas", "cherries", "dates", "oranges", "grapes"])
+      .range(["red", "yellow", "pink", "brown", "orange", "purple"]);
+    
+    var stack1 = d3.stack() 
+      .keys(["apples", "bananas", "cherries", "dates", "oranges", "grapes"])
+      .value((d, key) => d.fruitSales[key])
+      .order(d3.stackOrderNone)
+      .offset(d3.stackOffsetSilhouette);
+            
+    var stackedSeries1 = stack1(data);
+    
+    var stack2 = d3.stack()
+      .keys(["apples", "bananas", "cherries", "dates", "oranges", "grapes"])
+      .value((d, key) => d.fruitSales[key])
+      .order(d3.stackOrderInsideOut)
+      .offset(d3.stackOffsetWiggle);
+      
+    var stackedSeries2 = stack2(data);
+    
+    var area = d3.area()
+      .x((d) => xScale(d.data.month))
+      .y0((d) => yScale(d[0]))
+      .y1((d) => yScale(d[1]))
+      .curve(d3.curveBasis);
+    
+    addAreas(d3.select("#demo9s")
+      .select("#stack9s"), stackedSeries1, area, "translate(0, -150)"); // Areas to stackOffsetSilhouette
+      
+    addAreas(d3.select("#demo9w")
+      .select("#stack9w"), stackedSeries2, area); // Areas to stackOrderReverse // Areas to stackOffsetWiggle
+    
+    addLabels(d3.select("#demo9s")
+      .select("#stack9s")
+      .append("g")
+      .attr("transform", "translate(0, -150)"), stackedSeries1, area); 
+    
+    addLabels(d3.select("#demo9w")
+      .select("#stack9w"), stackedSeries2, area);
+    
+    //Adds the baseline the Silhouette
+    d3.select("#baseline9s")
+      .append("path")
+      .attr("d", "M 25 " + yScale(0) + " l 325 0")
+      .attr("stroke-dasharray", "10,5")
+      .attr("stroke", "black")
+      .attr("stroke-width", "2px");
+    
+    d3.select("#baseline9s")
+      .append("text")
+      .attr("x", 0)
+      .attr("y", yScale(0) - 10)
+      .text("Baseline");
+        
+      d3.select("#baseline9w")
+      .append("path")
+      .attr("d", "M 25 " + yScale(0) + " l 325 0")
+      .attr("stroke-dasharray", "10,5")
+      .attr("stroke", "black")
+      .attr("stroke-width", "2px");
+      
+      d3.select("#baseline9w")
+      .append("text")
+      .attr("x", 0)
+      .attr("y", yScale(0) - 10)
+      .text("Baseline");
+    </script>
+    
+    <svg id="demo9s" width="300" height="300">
+      <g id="stack9s"></g>
+      <g id="baseline9s" transform="translate(0,-150)")></g>
+    </svg>
+    <svg id="demo9w" width="300" height="300">
+      <g id="stack9w"></g>
+      <g id="baseline9w")></g>
+    </svg>
